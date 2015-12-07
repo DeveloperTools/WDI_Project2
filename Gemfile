@@ -7,3 +7,5 @@ gem 'json'
 gem 'pry'
 gem "bcrypt"
 gem "httparty"
+gem "activerecord"
+gem "activesupport"
