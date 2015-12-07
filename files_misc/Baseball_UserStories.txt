@@ -1,10 +1,11 @@
 User Stories
 -----------------------
-Login
+Login/Create Account
 
-Create Account
-
-Account Stats (season/sim results)
+Account Profile (Landing Page) (season/sim results)
+  Create League
+  Sim History
+  
 
 One Player Draft
   Team Stats
