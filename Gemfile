@@ -5,3 +5,5 @@ gem 'pg'
 gem 'sinatra-activerecord'
 gem 'json'
 gem 'pry'
+gem "bcrypt"
+gem "httparty"
