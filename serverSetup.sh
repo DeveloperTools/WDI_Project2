@@ -4,8 +4,6 @@ apt-get install build-essential -y
 apt-get install git -y
 apt-get install postgresql -y
 apt-get install postgresql-contrib -y
-sudo -i -u postgres createuser -s root
-exit
 sudo -i -u postgres createdb root
 exit
 touch ~/.psql_history
