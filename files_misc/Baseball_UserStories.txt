@@ -1,0 +1,50 @@
+User Stories
+-----------------------
+Login
+
+Create Account
+
+Account Stats (season/sim results)
+
+One Player Draft
+  Team Stats
+    Stat Projections
+      Batting Average
+      Home Runs
+      ERA
+  Search
+    Player Search + Stats
+      Batting - Runs, Batting Ave, Home Runs, Stolen Bases, RBI
+      Pitching - Wins, ERA, Opposing Batting Average, Saves, Strikeouts
+  Set Rules
+    1 Game
+    Each Player is Unique
+    9 batters
+    9 pitchers
+
+
+One Player Simulation One Game
+  "At Bat" function
+    takes batting average, determines hit or out, if hit then type of hit - single, double, triple, home run + RBI. Did you get an RBI "did you score a run on hit?"
+  Weighted results function per game per player
+  Results
+    Batter Per Game - Runs, Batting Ave, Home Runs, Stolen Bases, RBI
+    Pitcher Per Game - Pitching - Wins, ERA, Opposing Batting Average, Saves, Strikeouts
+
+
+ICEBOX
+Player Stats
+  Pitching - WHIP (Walks + Hits per innings pitched)
+Persistent Help Information
+Customize Account
+Create Test Team
+One Player Simulation One Season
+  Sim 7 games and show result
+  Create events that occur during season
+League Team Draft
+League One Game Simulation
+League One Season Simulation
+Position Restrictions
+Salary Restrictions
+One Player Draft Team
+  Custom Rules
