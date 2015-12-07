@@ -1,11 +1,13 @@
 User Stories
 -----------------------
 Login/Create Account
+  HTML/CSS
+  Route
 
 Account Profile (Landing Page) (season/sim results)
+  HTML/CSSHJ
   Create League
   Sim History
-  
 
 One Player Draft
   Team Stats
