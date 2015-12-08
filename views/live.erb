@@ -12,6 +12,26 @@
 </div>
 
 <script type="text/javascript">
-  var arrayjson = <%= @playersarray.to_json%>;
-  console.log(arrayjson);
+  $.ajax({
+    url: '/draft/random',
+    type: 'GET',
+    dataType: 'json',
+  })
+  .done(function(data) {
+    var randomarray = data;
+    for (var i in randomarray) {
+      $('.livedraft').append("<div id=\"" + randomarray[i].playerid + "\">"+randomarray[i].namefirst + " " + randomarray[i].namelast + " </div>");
+      for (var j in randomarray[i].batting) {
+        $('#' + randomarray[i].playerid).append("<li>Year: " + randomarray[i].batting[j].yearid + " Hits:" + randomarray[i].batting[j].h+"</li>");
+      }
+    }
+
+  })
+  .fail(function() {
+    console.log("error");
+  })
+  .always(function() {
+    console.log("complete");
+  });
+
 </script>
