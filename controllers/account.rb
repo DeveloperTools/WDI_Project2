@@ -1,5 +1,20 @@
 class AccountController < ApplicationController
 
+  def authorization_check
+
+    if session[:current_user] == nil
+
+      @message = "Please log in to play ball!"
+      redirect "/"
+
+    else
+
+      return true
+
+    end
+
+  end
+
   get "/" do
 
     erb :login
@@ -47,14 +62,16 @@ class AccountController < ApplicationController
   end
 
   get "/account_profile" do
+
     erb :account_profile
+
   end
 
-  # get "/logout" do
-  #
-  # authorization_check
-  # session[:current_user] = nil
-  # redirect "/"
-  #
-  # end
+  get "/logout" do
+
+    session[:current_user] = nil
+    authorization_check
+
+  end
+
 end
