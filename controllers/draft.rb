@@ -5,12 +5,19 @@ get '/' do
   erb :draft
 end
 
-get '/live' do
-  @draft = Draft.create(
-    :team_owner => params[:user_name]
-
+post '/' do
+  @team = Draft.create(
+    :team_owner => params[:user_name],
+    :team_name => params[:team_name],
+    :league_name => params[:league_name]
   )
+  redirect '/live'
 end
 
+get '/live' do
+  erb :live
+end
 
+post '/#' do
+  
 end
