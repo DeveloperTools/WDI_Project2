@@ -31,7 +31,7 @@ class AccountController < ApplicationController
 
       if login_account
 
-        session[:current_account] = login_account
+        session[:current_account] = login_account.account_name
         redirect "/account_profile"
 
       else
