@@ -11,7 +11,7 @@ post '/' do
     :team_name => params[:team_name],
     :league_name => params[:league_name]
   )
-  binding.pry
+  session[:current_team] = @team
   redirect 'draft/live'
 end
 

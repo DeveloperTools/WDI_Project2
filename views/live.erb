@@ -1,3 +1,4 @@
+<% @team = session[:current_team] %>
 <div class="livedraft">
   <p>
     Draft for <%= @team.team_name %> in league <%= @team.league_name %>
@@ -10,7 +11,7 @@
   <div class="draftlist">
     <% index = 0 %>
     <% 20.times do |item| %>
-    <% item = Player.find(index)%>
+    <% item = Player.first()%>
     <div id="<%= item.namefirst + " " + item.namelast%>"><%= item.namefirst + " " + item.namelast%></div>
     <% index += 1 %>
     <% end %>
