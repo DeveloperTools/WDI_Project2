@@ -1,18 +1,33 @@
 <script src="/script/login.js"></script>
 
-<form action="/" method="post">
-  <input type="text" name="login_name" placeholder="Name">
-  <input type="password" name="login_password" placeholder="Password">
-  <input type="submit" value="ENTER SITE">
-</form>
+<div class="container">
+  <div class="row">
+    <!-- LEFT COLUMN FOR LOGIN -->
+    <div class="three columns">
+      <!-- LOGIN -->
+      <form action="/" method="post">
+        <input type="text" name="login_name" placeholder="Name">
+        <input type="password" name="login_password" placeholder="Password">
+        <input type="submit" value="ENTER SITE">
+      </form>
+      <% if @message_login %>
+        <strong><%= @message_login %></strong>
+      <% end %>
+      <!-- CREATE ACCOUNT -->
+      <form action="/" method="post">
+        <input type="text" name="create_account_name" placeholder="New Account Name">
+        <input type="password" name="create_account_password" placeholder="Create Password">
+        <input type="submit" value="CREATE ACCOUNT">
+      </form>
+      <% if @message_createAccount %>
+        <strong><%= @message_createAccount %></strong>
+      <% end %>
+    </div>
+    <!-- RIGHT COLUMN FOR LOGO -->
+    <div class="nine columns">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </div>
 
-
-<form action="/" method="post">
-  <input type="text" name="create_account_name" placeholder="New Account Name">
-  <input type="password" name="create_account_password" placeholder="Create Password">
-  <input type="submit" value="CREATE ACCOUNT">
-</form>
-
-<% if @message %>
-  <strong><%= @message %></strong>
-<% end %>
+  </div>
+  
+</div>

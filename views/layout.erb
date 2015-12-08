@@ -1,16 +1,40 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <title>History at Bat</title>
-
-    <script src="/jquery-2.1.4.min.js"></script>
+    <script src="/jquery/jquery-2.1.4.min.js"></script>
     <script src="/script/layout.js"></script>
     <link rel="stylesheet" href="/style/style.css" media="screen" title="no title" charset="utf-8">
 
+
+      <!-- Basic Page Needs
+      –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+      <meta charset="utf-8">
+      <title>History at Bat</title>
+      <meta name="description" content="">
+      <meta name="author" content="">
+
+      <!-- Mobile Specific Metas
+      –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <!-- FONT
+      –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+      <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+      <!-- CSS
+      –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+      <link rel="stylesheet" href="/../style/normalize.css">
+      <link rel="stylesheet" href="/../style/skeleton.css">
+
+      <!-- Favicon
+      –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+      <!-- <link rel="icon" type="image/png" href="images/favicon.png"> -->
+
   </head>
   <body>
-    <%= yield %>
-    <a href="/logout">LOG OUT</a>
+
+        <%= yield %>
+        <a href="/logout">LOG OUT</a>
+
   </body>
 </html>
