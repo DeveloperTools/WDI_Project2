@@ -1,4 +1,3 @@
-<% @team = session[:current_team] %>
 <div class="livedraft">
   <p>
     Draft for <%= @team.team_name %> in league <%= @team.league_name %>
@@ -9,12 +8,10 @@
     </form>
   </div>
   <div class="draftlist">
-    <% index = 0 %>
-    <% 20.times do |item| %>
-    <% item = Player.all.sample%>
-    <div id="<%= item.namefirst + " " + item.namelast%>"><%= item.namefirst + " " + item.namelast%></div>
-    <% index += 1 %>
-    <% end %>
   </div>
-
 </div>
+
+<script type="text/javascript">
+  var arrayjson = <%= @playersarray.to_json%>;
+  console.log(arrayjson);
+</script>

@@ -16,6 +16,15 @@ post '/' do
 end
 
 get '/live' do
+  @team = session[:current_team]
+  @playersarray = Array.new
+  10.times do |item|
+    item = Player.all.sample
+      while !item.batting_records
+      item = Player.all.sample.to_json 
+      end
+    @playersarray.push(item)
+  end
   erb :live
 end
 
