@@ -8,12 +8,10 @@
     </form>
   </div>
   <div class="draftlist">
-    <% index = 0 %>
-    <% 20.times do |item| %>
-    <% item = Player.find(index)%>
-    <div id="<%= item.namefirst + " " + item.namelast%>"><%= item.namefirst + " " + item.namelast%></div>
-    <% index += 1 %>
-    <% end %>
   </div>
-
 </div>
+
+<script type="text/javascript">
+  var arrayjson = <%= @playersarray.to_json%>;
+  console.log(arrayjson);
+</script>

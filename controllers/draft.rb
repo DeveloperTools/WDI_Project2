@@ -11,11 +11,20 @@ post '/' do
     :team_name => params[:team_name],
     :league_name => params[:league_name]
   )
-  binding.pry
+  session[:current_team] = @team
   redirect 'draft/live'
 end
 
 get '/live' do
+  @team = session[:current_team]
+  @playersarray = Array.new
+  10.times do |item|
+    item = Player.all.sample
+      while !item.batting_records
+      item = Player.all.sample.to_json 
+      end
+    @playersarray.push(item)
+  end
   erb :live
 end
 
