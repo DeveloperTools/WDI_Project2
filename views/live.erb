@@ -22,7 +22,7 @@
     for (var i in randomarray) {
       $('.livedraft').append("<div id=\"" + randomarray[i].playerid + "\">"+randomarray[i].namefirst + " " + randomarray[i].namelast + " </div>");
       for (var j in randomarray[i].batting) {
-        $('#' + randomarray[i].playerid).append("<li>Year: " + randomarray[i].batting[j].yearid + " Hits:" + randomarray[i].batting[j].h+"</li>");
+        $('#' + randomarray[i].playerid).append("<li>Year: " + randomarray[i].batting[j].yearid + " Hits:" + randomarray[i].batting[j].h + " Runs:" + randomarray[i].batting[j].r + " Home Runs:" + randomarray[i].batting[j].hr + " RBIs:" + randomarray[i].batting[j].rbi + " Stolen Bases:" + randomarray[i].batting[j].sb + "</li>");
       }
     }
 

@@ -40,5 +40,9 @@ get '/random' do
   return @playersarray.to_json
 end
 
+get '/:search' do
+# return player searched for
+end
+
 
 end
