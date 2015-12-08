@@ -11,7 +11,7 @@
   <div class="draftlist">
     <% index = 0 %>
     <% 20.times do |item| %>
-    <% item = Player.first()%>
+    <% item = Player.all.sample%>
     <div id="<%= item.namefirst + " " + item.namelast%>"><%= item.namefirst + " " + item.namelast%></div>
     <% index += 1 %>
     <% end %>
