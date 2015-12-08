@@ -1,17 +1,18 @@
 class DraftController < ApplicationController
 
 get '/' do
-  @user = Account.find_by(account_name: session[:current_user])
+  @account = Account.find_by(account_name: session[:current_account])
   erb :draft
 end
 
 post '/' do
   @team = Draft.create(
-    :team_owner => params[:user_name],
+    :team_owner => params[:account_name],
     :team_name => params[:team_name],
     :league_name => params[:league_name]
   )
-  redirect '/live'
+  binding.pry
+  redirect 'draft/live'
 end
 
 get '/live' do

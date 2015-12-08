@@ -1,19 +1,4 @@
-<div class="livedraft">
-  <p>
-    Draft for <%= @team.team_name%> in league <%= @team.league_name %>
-  </p>
-  <div class="">
-    <form class="draftsearch" action="#" method="post">
-      <input type="post" name="search" placeholder="Player Name">
-    </form>
-  </div>
-  <div class="draftlist">
-    <% index = 0 %>
-    <% 20.times do |item| %>
-    <% item = Player.find(index)%>
-    <div id="<%= item.namefirst + " " + item.namelast%>"><%= item.namefirst + " " + item.namelast%></div>
-    <% index += 1 %>
-    <% end %>
-  </div>
 
-</div>
+<p>
+  live view
+</p>
