@@ -13,3 +13,7 @@
   <input type="password" name="create_account_password_confirm">
   <input type="submit" value="CREATE ACCOUNT">
 </form>
+
+<% if @message %>
+  <strong><%= @message %></strong>
+<% end %>
