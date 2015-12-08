@@ -10,33 +10,51 @@ class AccountController < ApplicationController
 
     # ACCOUNT LOGIN
     #
-    # login_account = Account.authenticate(params[:login_email], params[:login_password])
-    #
-    # if login_account
-    #   session[:current_account] = login_account
-    #   redirect "/account_profile"
-    # else
-    #   @message = "Your email or password is incorrect"
-    #   # erb :login
-    # end
+    if params[:login_name] && params[:login_password]
+
+      login_account = Account.authenticate(params[:login_name], params[:login_password])
+
+      if login_account
+
+        session[:current_account] = login_account
+        redirect "/account_profile"
+
+      else
+
+        @message = "Your email or password is incorrect"
+        erb :login
+
+      end
+
+    end
 
     # ACCOUNT CREATE
     #
-    new_account = Account.create(
-    :account_name => params[:create_account_name],
-    :account_email => params[:create_account_email],
-    :password => params[:create_account_password]
-    )
+    if params[:create_account_name] && params[:create_account_password]
 
-    p new_account
+      new_account = Account.create(
+      :account_name => params[:create_account_name],
+      :account_email => params[:create_account_email],
+      :password => params[:create_account_password]
+      )
 
-    session[:current_account] = new_account
+      session[:current_account] = new_account.account_name
+
+      redirect "/account_profile"
+
+    end
 
   end
 
   get "/account_profile" do
-    # @account_record = Account.find_by(:account_email => login_email)
     erb :account_profile
   end
 
+  # get "/logout" do
+  #
+  # authorization_check
+  # session[:current_user] = nil
+  # redirect "/"
+  #
+  # end
 end

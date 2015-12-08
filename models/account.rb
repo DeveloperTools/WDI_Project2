@@ -14,15 +14,14 @@ class Account < ActiveRecord::Base
 
   # create a method to test if we are allowed authorization so we need to authenticate
   # we log in with a user name and password...this method handles all that on the backend
-  def self.authenticate(login_email, login_password)
-    current_account = Account.find_by(:account_email => login_email)
-    p current_account.password
-    # return our current user if passwords match
-    # if (current_account.password == login_password)
-    #   return current_account
-    # else
-    #   return nil
-    # end
+  def self.authenticate(login_name, login_password)
+    current_account = Account.find_by(:account_name => login_name)
+
+    if (current_account.password == login_password)
+      return current_account
+    else
+      return nil
+    end
 
   end
 
