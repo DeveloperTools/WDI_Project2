@@ -20,8 +20,9 @@ get '/live' do
   erb :live
 end
 
-post '/#' do
-
+post '/select' do
+  p "the result is"
+  p params
 end
 
 get '/random' do
