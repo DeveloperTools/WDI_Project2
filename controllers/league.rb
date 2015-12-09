@@ -11,6 +11,7 @@ class LeagueController < ApplicationController
     # if League.find_by(params[:league_name])
 
     # end
+    @err_message = nil
     League.all.each do |l|
       if l.league_name == params[:league_name]
         @err_message = 'This League already exists'
@@ -22,7 +23,7 @@ class LeagueController < ApplicationController
     :team1_owner => params[:team1_owner],
     :team2_owner => params[:team2_owner]
     )
-    params[:current_league] = @league
+    params[:current_league] = @league[:league_name]
     redirect '/league'
   end
 
@@ -34,5 +35,20 @@ class LeagueController < ApplicationController
       end
     end
     return @myleagues.to_json
+  end
+
+  get '/myleagues/:league_name' do
+    @err_message = "This League does not exist"
+    League.all.each do |l|
+      if l.league_name == params[:league_name]
+        @err_message = nil
+      end
+    end
+    if @err_message
+      session[:error_league] = @err_message
+      redirect '/league'
+    end
+    session[:current_league] = params[:league_name]
+    erb :league_page
   end
 end
