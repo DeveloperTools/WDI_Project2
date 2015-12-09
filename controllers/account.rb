@@ -4,23 +4,23 @@ class AccountController < ApplicationController
 
     if session[:current_user] == nil
 
-      @message = "Please log in to play ball!"
+      session[:login_message] = "Login to play ball!"
       redirect "/"
-
-    else
-
-      return true
 
     end
 
   end
 
+  # RENDER LOGIN VIEWS
+  #
   get "/" do
 
     erb :login
 
   end
 
+  # RECEIVE LOGIN OR CREATE DATA AND REDIRECT ACCORDINGLY
+  #
   post "/" do
 
     # ACCOUNT LOGIN
@@ -31,13 +31,14 @@ class AccountController < ApplicationController
 
       if login_account
 
+        session[:login_message] = nil
         session[:current_account] = login_account.account_name
         redirect "/account_profile"
 
       else
 
-        @message = "Your email or password is incorrect"
-        erb :login
+        session[:login_message] = "Your email or password is incorrect"
+        redirect "/"
 
       end
 
@@ -53,8 +54,8 @@ class AccountController < ApplicationController
       :password => params[:create_account_password]
       )
 
+      session[:login_message] = nil
       session[:current_account] = new_account.account_name
-
       redirect "/account_profile"
 
     end
