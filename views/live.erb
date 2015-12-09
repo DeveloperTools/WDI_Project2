@@ -1,65 +1,74 @@
-<div class="livedraft">
-  <p>
-    Draft for <%= @team.team_name %> in league <%= @team.league_name %>
-  </p>
-  <div class="">
-    <form class="draftsearch" action="#" method="post">
-      <input type="post" name="search" placeholder="Player Name">
-    </form>
+<script src="/script/live.js"></script>
+<link rel="stylesheet" href="/style/live.css">
 
-  </div>
-  <div class="draftlist">
+<div id="page_header">
+  <div id="container_logo">
+    <img src="/img/logo_large.png" alt="" />
   </div>
 </div>
 
-<script type="text/javascript">
-  $.ajax({
-    url: '/draft/random',
-    type: 'GET',
-    dataType: 'json',
-  })
-  .done(function(data) {
-    var randomarray = data;
-    for (var i in randomarray) {
-      $('.livedraft').append("<div id=\"" + randomarray[i].playerid + "\">"+randomarray[i].namefirst + " " + randomarray[i].namelast + " </div>");
-      for (var j in randomarray[i].batting) {
-        $('#' + randomarray[i].playerid).append("<li>Year: " + randomarray[i].batting[j].yearid + " Hits:" + randomarray[i].batting[j].h + " Runs:" + randomarray[i].batting[j].r + " Home Runs:" + randomarray[i].batting[j].hr + " RBIs:" + randomarray[i].batting[j].rbi + " Stolen Bases:" + randomarray[i].batting[j].sb + " <button id=\"" + randomarray[i].playerid + "," + randomarray[i].batting[j].yearid +  "\" onclick=\"draft(" + "\'" + randomarray[i].playerid + "\'" + "," + randomarray[i].batting[j].yearid + ");\">Draft</button>" + "</li>");
-      }
+<div class="container">
+  <div class="row">
+    <div class="livedraft">
+      <p>
+        Draft for <%= @team.team_name %> in league <%= @team.league_name %>
+      </p>
+      <div class="">
+        <form class="draftsearch" action="#" method="post">
+          <input type="post" name="search" placeholder="Player Name">
+        </form>
+
+      </div>
+      <div class="draftlist">
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $.ajax({
+        url: '/draft/random',
+        type: 'GET',
+        dataType: 'json',
+      })
+      .done(function(data) {
+        var randomarray = data;
+        for (var i in randomarray) {
+          $('.livedraft').append("<div id=\"" + randomarray[i].playerid + "\">"+randomarray[i].namefirst + " " + randomarray[i].namelast + " </div>");
+          for (var j in randomarray[i].batting) {
+            $('#' + randomarray[i].playerid).append("<li>Year: " + randomarray[i].batting[j].yearid + " Hits:" + randomarray[i].batting[j].h + " Runs:" + randomarray[i].batting[j].r + " Home Runs:" + randomarray[i].batting[j].hr + " RBIs:" + randomarray[i].batting[j].rbi + " Stolen Bases:" + randomarray[i].batting[j].sb + " <button id=\"" + randomarray[i].playerid + "," + randomarray[i].batting[j].yearid +  "\" onclick=\"draft(" + "\'" + randomarray[i].playerid + "\'" + "," + randomarray[i].batting[j].yearid + ");\">Draft</button>" + "</li>");
+          }
+        }
+
+      })
+      .fail(function() {
+        console.log("error");
+      })
+      .always(function() {
+        console.log("complete");
+      });
+
+    function draft(name,year) {
+      var resultjson = {
+        name: name,
+        year: year
+      };
+      console.log(resultjson);
+      console.log(typeof resultjson);
+      var call = $.ajax({
+        url: '/draft/select',
+        type: 'POST',
+        dataType: 'json',
+        data: resultjson
+      })
+      .done(function (data) {
+        console.log(data);
+        console.log(JSON.stringify(data));
+      })
+      .fail(function (data) {
+        console.log(data);
+      });
     }
 
-  })
-  .fail(function() {
-    console.log("error");
-  })
-  .always(function() {
-    console.log("complete");
-  });
+    </script>
 
-function draft(name,year) {
-  var resultjson = {
-    name: name,
-    year: year
-  };
-  console.log(resultjson);
-  console.log(typeof resultjson);
-  var call = $.ajax({
-    url: '/draft/select',
-    type: 'POST',
-    dataType: 'json',
-    data: resultjson
-  })
-  .done(function (data) {
-    console.log(data);
-    console.log(JSON.stringify(data));
-  })
-  .fail(function (data) {
-    console.log(data);
-  });
-
-
-
-
-}
-
-
-</script>
+  </div>
+</div>
