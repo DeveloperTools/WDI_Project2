@@ -21,8 +21,19 @@ get '/live' do
 end
 
 post '/select' do
-  p "the result is"
-  p params
+  puts params
+  @team = session[:current_team]
+  if @team.id
+    @result = Draft.find(@team.id)
+  else
+    return nil
+  end
+
+  if @result.player1_id == nil
+    @result.player1_id = params[:name]
+    @result.player1_yearid = params[:year]
+    @result.save
+  end
 end
 
 get '/random' do

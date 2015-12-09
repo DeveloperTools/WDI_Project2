@@ -36,16 +36,21 @@
   });
 
 function draft(name,year) {
-
+  var resultjson = {
+    name: name,
+    year: year
+  };
+  console.log(resultjson);
+  console.log(typeof resultjson);
   var call = $.ajax({
     url: '/draft/select',
     type: 'POST',
-    data: {
-      val1: "what"
-    }
+    dataType: 'json',
+    data: resultjson
   })
   .done(function (data) {
     console.log(data);
+    console.log(JSON.stringify(data));
   })
   .fail(function (data) {
     console.log(data);
