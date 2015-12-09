@@ -1,10 +1,23 @@
-<p>
-  League Creation
-</p>
+<link rel="stylesheet" href="/style/live.css">
 
-<form class="" action="/league/create" method="post">
-  <input type="text" name="league_name" placeholder="League Name">
-  <input type="text" name="team1_owner" placeholder="Team 1 owner">
-  <input type="text" name="team2_owner" placeholder="Team 2 owner">
-  <input type="submit" name="submit" value="submit">
-</form>
+<div id="page_header">
+  <div id="container_logo">
+    <img src="/img/logo_large.png" alt="" />
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="six columns">
+      <p>
+        League Creation
+      </p>
+
+      <form class="inline" action="/league/create" method="post">
+        <input type="text" name="league_name" placeholder="League Name">
+        <input type="text" name="team1_owner" placeholder="Team 1 owner">
+        <input type="text" name="team2_owner" placeholder="Team 2 owner">
+        <input type="submit" name="submit" value="submit">
+      </form>
+    </div>
+  </div>
+</div>
