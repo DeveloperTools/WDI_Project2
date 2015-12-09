@@ -10,8 +10,10 @@
 
 <div class="container">
   <div class="row">
+
     <!-- LEFT COLUMN FOR LOGIN -->
     <div class="four columns" id="login_left_col">
+
       <!-- LOGIN -->
       <form action="/" method="post">
         <label for="login_name">Login</label>
@@ -36,12 +38,14 @@
       <% if session[:create_login_message] %>
         <strong><%= session[:create_login_message] %></strong>
       <% end %>
-
     </div>
+
     <!-- RIGHT COLUMN FOR LOGO -->
     <div class="eight columns" id="login_right_col">
-      <h2>Welcome to History at Bat!</h2>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      <div class="welcome_message">
+        <h1>Welcome to History at Bat!</h1>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      </div>
     </div>
 
   </div>

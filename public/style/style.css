@@ -26,6 +26,11 @@ input:-webkit-autofill {
   max-width: 100%;
   max-height: 100%; }
 
+#login_right_col {
+  width: 500px;
+  height: 500px;
+  background-color: rgba(231, 46, 180, 0.38); }
+
 #login_left_col {
   margin-top: 40px; }
 
