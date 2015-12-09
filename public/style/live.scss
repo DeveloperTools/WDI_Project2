@@ -17,12 +17,12 @@ input:-webkit-autofill {
   text-align: center;
 }
 
-
-
-#login_left_col {
+#left_col {
   margin-top: 30px;
-  // background-color: rgba(119, 255, 77, 0.31);
+  background-color: rgba(119, 255, 77, 0.31);
 }
+
+// <---------- MEDIA QUERIES ------------->
 
 @media (min-width: 400px) {
   #login_right_col {
@@ -43,14 +43,6 @@ input:-webkit-autofill {
     max-height: 100%;
   }
 
-  .welcome_message, label {
-    color: white;
-  }
-
-  .welcome_message h1 {
-    font-size: 2.7rem;
-    font-weight: bold;
-  }
 }
 
 @media (min-width: 550px) {
@@ -65,23 +57,9 @@ input:-webkit-autofill {
   #container_logo img {
     top: 5px;
   }
-
-  .welcome_message, label {
-    color: black;
-  }
-
-  .welcome_message h1 {
-    font-size: 2.4rem;
-    font-weight: bold;
-  }
-
 }
 
 @media (min-width: 750px) {
-  .welcome_message h1 {
-    font-size: 3rem;
-    font-weight: normal;
-  }
 }
 
 @media (min-width: 1000px) {
@@ -105,10 +83,5 @@ input:-webkit-autofill {
   #login_right_col {
     margin-top: 10px;
     // background-color: rgba(231, 46, 180, 0.38);
-  }
-
-  .welcome_message h1 {
-    font-size: 4rem;
-    font-weight: normal;
   }
 }

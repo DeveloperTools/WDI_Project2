@@ -14,8 +14,9 @@ input:-webkit-autofill {
   margin-bottom: 40px;
   text-align: center; }
 
-#login_left_col {
-  margin-top: 30px; }
+#left_col {
+  margin-top: 30px;
+  background-color: rgba(119, 255, 77, 0.31); }
 
 @media (min-width: 400px) {
   #login_right_col {
@@ -31,14 +32,7 @@ input:-webkit-autofill {
   #container_logo img {
     position: relative;
     max-width: 100%;
-    max-height: 100%; }
-
-  .welcome_message, label {
-    color: white; }
-
-  .welcome_message h1 {
-    font-size: 2.7rem;
-    font-weight: bold; } }
+    max-height: 100%; } }
 @media (min-width: 550px) {
   #login_right_col {
     margin-top: 60px; }
@@ -47,18 +41,7 @@ input:-webkit-autofill {
     height: 125px; }
 
   #container_logo img {
-    top: 5px; }
-
-  .welcome_message, label {
-    color: black; }
-
-  .welcome_message h1 {
-    font-size: 2.4rem;
-    font-weight: bold; } }
-@media (min-width: 750px) {
-  .welcome_message h1 {
-    font-size: 3rem;
-    font-weight: normal; } }
+    top: 5px; } }
 @media (min-width: 1200px) {
   #login_right_col {
     margin-top: 50px; }
@@ -72,10 +55,6 @@ input:-webkit-autofill {
     top: 30px; }
 
   #login_right_col {
-    margin-top: 10px; }
-
-  .welcome_message h1 {
-    font-size: 4rem;
-    font-weight: normal; } }
+    margin-top: 10px; } }
 
 /*# sourceMappingURL=live.css.map */
