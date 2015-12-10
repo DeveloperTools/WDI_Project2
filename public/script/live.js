@@ -20,8 +20,8 @@ function updateDraftPlayerList(playerList){
     $player.append($name);
     //
     // STATS HEADER
-    var battingColHeaders = ["YEAR","HITS","RUNS","H.RUNS","RBI","S.BASES"];
-    for (var i = 0; i < 6; i++){
+    var battingColHeaders = ["YEAR","HITS","RUNS","H.RUNS","RBI","S.BASES", "DRAFT"];
+    for (var i = 0; i < 7; i++){
       $div = $("<div>", {class: "headerName"});
       $div.text(battingColHeaders[i]);
       $headerContainer.append($div);
@@ -44,6 +44,7 @@ function updateDraftPlayerList(playerList){
       var $h_runs = $("<div>", {class: "h_runs stats"}).text(h_runs);
       var $rbis = $("<div>", {class: "rbis stats"}).text(rbis);
       var $s_bases = $("<div>", {class: "s_bases stats"}).text(s_bases);
+      var $draft_button = $("<button>", {class: "draft_button stats", onclick: "draftPlayer(\"" + playerList[player].playerid + "\"," + yearNum + ")"}).text("draft");
 
       $statsContainer.append($year);
       $statsContainer.append($hits);
@@ -51,6 +52,7 @@ function updateDraftPlayerList(playerList){
       $statsContainer.append($h_runs);
       $statsContainer.append($rbis);
       $statsContainer.append($s_bases);
+      $statsContainer.append($draft_button);
       $player.append($statsContainer);
     }
     //

@@ -54,7 +54,7 @@ input:-webkit-autofill {
 .headerName {
   display: inline-block;
   vertical-align: text-top;
-  width: 13%;
+  width: 11%;
   padding-left: 2%; }
 
 .statsContainer {
@@ -68,7 +68,7 @@ input:-webkit-autofill {
   display: inline-block;
   height: 24px;
   padding-left: 2%;
-  width: 13%; }
+  width: 11%; }
 
 @media (min-width: 400px) {
   #login_right_col {

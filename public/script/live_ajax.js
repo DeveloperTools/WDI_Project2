@@ -43,7 +43,8 @@ function draftPlayer(name,year) {
   });
 }
 
-function playerSearch(searchterm) {
+function playerSearch() {
+  searchterm = $('#searchbox').val();
   var searchurl = '/draft/search/' + searchterm;
   $.ajax({
     url: searchurl,
