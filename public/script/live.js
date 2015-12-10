@@ -14,6 +14,7 @@ function updateDraftPlayerList(playerList){
     var $player = $("<div>", {id: playerList[player].playerid, class: "draftPlayer"});
     var $name = $("<div>", {class: "playerName"});
     var $headerContainer = $("<div>", {class: "headerContainer"})
+    var $pitchingheaderContainer = $("<div>", {class: "headerContainer"})
     //
     // APPEND NAME to PLAYER
     $name.text(playerList[player].namefirst + " " + playerList[player].namelast);
@@ -44,7 +45,7 @@ function updateDraftPlayerList(playerList){
       var $h_runs = $("<div>", {class: "h_runs stats"}).text(h_runs);
       var $rbis = $("<div>", {class: "rbis stats"}).text(rbis);
       var $s_bases = $("<div>", {class: "s_bases stats"}).text(s_bases);
-      var $draft_button = $("<button>", {class: "draft_button stats", onclick: "draftPlayer(\"" + playerList[player].playerid + "\"," + yearNum + ")"}).text("draft");
+      var $draft_button = $("<button>", {class: "button-primary draft_button stats", onclick: "draftPlayer(\"" + playerList[player].playerid + "\"," + yearNum + ")"}).text("draft");
 
       $statsContainer.append($year);
       $statsContainer.append($hits);
@@ -52,6 +53,40 @@ function updateDraftPlayerList(playerList){
       $statsContainer.append($h_runs);
       $statsContainer.append($rbis);
       $statsContainer.append($s_bases);
+      $statsContainer.append($draft_button);
+      $player.append($statsContainer);
+    }
+    var pitchingColHeaders = ["YEAR","WINS","WALKS","K","ERA","SAVES", "DRAFT"];
+    for (var i = 0; i < 7; i++){
+      $div = $("<div>", {class: "headerName"});
+      $div.text(pitchingColHeaders[i]);
+      $pitchingheaderContainer.append($div);
+    }
+    $player.append($pitchingheaderContainer);
+
+    for (var year in playerList[player].pitching) {
+      var yearNum = playerList[player].pitching[year].yearid;
+      var wins = playerList[player].pitching[year].w;
+      var bb = playerList[player].pitching[year].bb;
+      var k = playerList[player].pitching[year].so;
+      var era = playerList[player].pitching[year].era;
+      var sv = playerList[player].pitching[year].sv;
+
+      var $statsContainer = $("<div>", {class: "statsContainer"})
+      var $year = $("<div>", {class: "year stats"}).text(yearNum);
+      var $wins = $("<div>", {class: "wins stats"}).text(wins);
+      var $bb = $("<div>", {class: "bb stats"}).text(bb);
+      var $k = $("<div>", {class: "k stats"}).text(k);
+      var $era = $("<div>", {class: "era stats"}).text(era);
+      var $sv = $("<div>", {class: "sv stats"}).text(sv);
+      var $draft_button = $("<button>", {class: "button-primary draft_button stats", onclick: "draftPitcher(\"" + playerList[player].playerid + "\"," + yearNum + ")"}).text("draft");
+
+      $statsContainer.append($year);
+      $statsContainer.append($wins);
+      $statsContainer.append($bb);
+      $statsContainer.append($k);
+      $statsContainer.append($era);
+      $statsContainer.append($sv);
       $statsContainer.append($draft_button);
       $player.append($statsContainer);
     }
