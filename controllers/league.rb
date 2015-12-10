@@ -62,17 +62,16 @@ class LeagueController < ApplicationController
         p bat
       end
       binding.pry
-      # @stats[:r] = batting.r
-      # @stats[:h] = batting.h
-      # @stats[:ab] = batting.ab
-      # @stats[:hr] = batting.hr
-      # @stats[:rbi] = batting.rbi
-      # @stats[:sb] = batting.sb
-
+      results = simulate_batting(batting,atbats)
+      team.r_total = results[:r]
+      team.h_total = results[:h]
+      team.ab_total = results[:ab]
+      team.hr_total = results[:hr]
+      team.rbi_total = results[:rbi]
+      team.sb_total = results[:sb]
+      team.save
     end
-
-    erb :league_page
-    # League.find(params[:league_name]).teams
+    redirect 'myleagues/' + params[:league_name]
   end
 
   def league_check
@@ -98,17 +97,18 @@ class LeagueController < ApplicationController
       :sb =>0 }
     abs.times do
       if stats.ab > 0
-
         ba = (stats.h.to_f/stats.ab.to_f)
+        hr_ratio = (stats.hr.to_f/stats.h.to_f)
+        run_ratio = (stats.r.to_f/stats.h.to_f)
+        sb_ratio = (stats.sb.to_f/stats.h.to_f)
+        rbi_ratio = (stats.rbi.to_f/stats.h.to_f)
         if rand < ba
           results[:h] += 1
           hit = true
           p "Hit"
         end
         if hit
-          hr_ratio = (stats.hr.to_f/stats.h.to_f)
-          run_ratio = (stats.r.to_f/stats.h.to_f)
-          sb_ratio = (stats.sb.to_f/stats.h.to_f)
+
           if rand < hr_ratio
             results[:hr] += 1
             results[:r] += 1
