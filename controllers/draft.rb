@@ -39,10 +39,11 @@ end
 get '/random' do
   @team = session[:current_team]
   @playersarray = Array.new
+  totalrecords = Player.count
   10.times do |item|
-    item = Player.offset(rand * Player.count).first
+    item = Player.offset(rand * totalrecords).first
       while !item.batting_records
-      item = Player.offset(rand * Player.count).first
+      item = Player.offset(rand * totalrecords).first
       end
       batting = item.batting_records
       playerhash = item.attributes
