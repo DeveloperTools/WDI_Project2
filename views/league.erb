@@ -1,5 +1,4 @@
-
-<link rel="stylesheet" href="/style/live.css">
+<link rel="stylesheet" href="/style/league.css">
 
 <div id="page_header">
   <div id="container_logo">
@@ -10,15 +9,21 @@
 <div class="container">
   <div class="row">
     <div class="six columns">
-      <% if session[:error_league] %>
-      <h1><%= session[:error_league]%></h1>
-      <%end%>
-      <p>
-        League List
-      </p>
-      <div class="" id="leaguelist">
+      <h3>Welcome back <%= session[:current_account] %>!</h3>
+      <h4>Create a new league</h4>
+      <h4>jump into a league draft you've been invited to</h4>
+      <h4>or simulate a season for a league you've already joined!</h4>
+
+      <h5><strong>You've been invited to draft in these leagues!</strong></h5>
+      <div id="notDrafted">
       </div>
+
+      <h5><strong>You're part of the following leagues</strong></h5>
+      <div id="drafted">
+      </div>
+
     </div>
   </div>
 </div>
+<script src="/script/league_ajax.js"></script>
 <script src="/script/league.js"></script>
