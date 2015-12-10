@@ -37,6 +37,33 @@ input:-webkit-autofill {
   display: block;
 }
 
+#createLeague{
+  width: 100%;
+}
+
+h5 {
+  background-color: rgba(56, 66, 199, 0.75);
+  color: white;
+  font-weight: bold;
+}
+
+.leagueName{
+  width: 100%;
+  font-weight: bold;
+  font-size: 3rem;
+  height: 70px;
+}
+
+.formInput {
+  width: 24%;
+  margin: 0;
+  padding: 0;
+}
+
+.buttonLeague {
+  float: right;
+}
+
 .draftPlayer {
   margin-bottom: 3px;
 }

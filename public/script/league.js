@@ -2,28 +2,35 @@ $(document).ready(function(){
   getLeagues(); // ajax call in league_ajax.js
 }); //end of document.ready
 
+function resetLeagueList() {
+  $("#notDrafted").empty();
+  $("#drafted").empty();
+}
+
+function clearFormData() {
+  $("#createLeague")[0].reset();
+}
+
 function createLeagueList(leagueList){
   //
   for (var league in leagueList) {
-    // if (leagueList[league].draftcomplete) {
-    //   addLeagueToList(leagueList[league].league_name, true);
-    // } else {
-    //   addLeagueToList(leagueList[league].league_name, false);
-    // }
-    if (Math.random() > .5) {
-      addLeagueToList(leagueList[league].league_name, true);
+    if (leagueList[league].draftcomplete) {
+      addLeagueToView(leagueList[league].league_name, true, leagueList[league].id);
     } else {
-      addLeagueToList(leagueList[league].league_name, false);
+      addLeagueToView(leagueList[league].league_name, false, leagueList[league].id);
     }
   }
 }
 
-function addLeagueToList(name, draftComplete) {
+function addLeagueToView(name, draftComplete, leagueid) {
   //
   $league = $("<div>", {id: name, class: "leagueName"});
   $league.text(name);
-  $buttonDetail = $("<input>", {type: "submit", name: "detail", value: "VIEW/SIM LEAGUE", class: "button-primary buttonLeague detail"});
+  $buttonDetail = $("<input>", {type: "submit", name: "detail", value: "VIEW / SIMULATE", class: "button-primary buttonLeague detail"});
   $buttonDraft = $("<input>", {type: "submit", name: "draft", value: "DRAFT NOW!", class: "button-primary buttonLeague draft"});
+  $hiddenid = $("<input>", {type: "hidden", value: leagueid});
+  $form_draft = $("<form>", {action: "/draft"}
+  $form_detail = $("<form>", {action: "/myleagues/"})
   //
   if (draftComplete) {
     $league.append($buttonDetail);
@@ -34,21 +41,3 @@ function addLeagueToList(name, draftComplete) {
   }
 
 }
-//
-// function addDraftedLeague(name){
-//   //
-//   $league = $("<div>" {id: name, class: "leagueName"});
-//   $buttonLeagueDetail = $("<input>" {class: "button-primary buttonLeague detail"});
-//   //
-//   $league.append($buttonLeagueDetail);
-//   $leagueDraftedList.append($league);
-// }
-//
-// function addNotDraftedLeague(name){
-//   //
-//   $league = $("<div>" {id: name, class: "leagueName"});
-//   $buttonLeagueDraft = $("<input>" {class: "button-primary buttonLeague draft"});
-//   //
-//   $league.append($buttonLeagueDraft);
-//   $leagueNotDraftedList.append($league);
-// }
