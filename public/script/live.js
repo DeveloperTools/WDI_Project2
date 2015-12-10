@@ -44,7 +44,7 @@ function updateDraftPlayerList(playerList){
       var $h_runs = $("<div>", {class: "h_runs stats"}).text(h_runs);
       var $rbis = $("<div>", {class: "rbis stats"}).text(rbis);
       var $s_bases = $("<div>", {class: "s_bases stats"}).text(s_bases);
-      var $draft_button = $("<button>", {class: "draft_button stats", onclick: "draftPlayer(\"" + playerList[player].playerid + "\"," + yearNum + ")"}).text("draft");
+      var $draft_button = $("<button>", {class: "button-primary draft_button stats", onclick: "draftPlayer(\"" + playerList[player].playerid + "\"," + yearNum + ")"}).text("draft");
 
       $statsContainer.append($year);
       $statsContainer.append($hits);

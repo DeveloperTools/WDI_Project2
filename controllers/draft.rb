@@ -8,7 +8,7 @@ end
 post '/' do
   @team = Draft.create(
     :team_owner => params[:account_name],
-    :team_name => params[:team_name]
+    :team_name => params[:team_name],
     :league_name => params[:league_name]
   )
   session[:current_team] = @team
@@ -29,11 +29,18 @@ post '/select' do
     return nil
   end
 
-  if @result.player1_id == nil
-    @result.player1_id = params[:name]
-    @result.player1_yearid = params[:year]
-    @result.save
+  4.times do |player|
+    playerindex = "player" + (player + 1).to_s + "_id"
+    yearindex = "player" + (player + 1).to_s + "_yearid"
+    if @result[playerindex.to_sym] == nil
+      binding.pry
+      @result[playerindex.to_sym] = params[:name]
+      @result[yearindex.to_sym] = params[:year]
+      @result.save
+      return p "added player to team"
+    end
   end
+  return p "team full"
 end
 
 get '/random' do
