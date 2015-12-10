@@ -8,10 +8,10 @@
 </div>
 
 <div class="container">
+  <h1>Draft for <%= @current_league %></h1>
   <div class="row">
     <form class="draft" action="/draft" method="post">
       <input type="text" name="team_name" placeholder="Team Name">
-      <input type="text" name="league_name" placeholder="League Name">
       <input type="hidden" name="account_name" value="<%= @account.account_name %>">
       <input type="submit" name="name" value="Start Draft">
     </form>

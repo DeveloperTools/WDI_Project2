@@ -40,7 +40,7 @@ class LeagueController < ApplicationController
   get '/myleagues/:league_name' do
     league_check
     session[:current_league] = params[:league_name]
-    erb :league_page
+    erb :league_detail
   end
 
   get '/myleagues/:league_name/results' do
