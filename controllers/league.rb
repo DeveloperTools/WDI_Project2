@@ -11,6 +11,7 @@ class LeagueController < ApplicationController
     # if League.find_by(params[:league_name])
 
     # end
+    @err_message = nil
     League.all.each do |l|
       if l.league_name == params[:league_name]
         @err_message = 'This League already exists'
@@ -22,7 +23,7 @@ class LeagueController < ApplicationController
     :team1_owner => params[:team1_owner],
     :team2_owner => params[:team2_owner]
     )
-    params[:current_league] = @league
+    params[:current_league] = @league[:league_name]
     redirect '/league'
   end
 
@@ -34,5 +35,112 @@ class LeagueController < ApplicationController
       end
     end
     return @myleagues.to_json
+  end
+
+  get '/myleagues/:league_name' do
+    league_check
+    session[:current_league] = params[:league_name]
+    erb :league_page
+  end
+
+  get '/myleagues/:league_name/results' do
+    league_check
+  end
+
+  get '/myleagues/:league_name/simulation' do
+    league_check
+    @teams = League.find(params[:league_name]).teams
+    @teams.each do |team|
+      @stats = Hash.new
+      @stats[:playerid] = team.player1_id
+      @stats[:yearid] = team.player1_yearid
+      batting = nil
+      Player.find(team.player1_id).batting_records.each do |bat|
+        if bat.yearid == @stats[:yearid].to_i
+          batting = bat
+        end
+        p bat
+      end
+      binding.pry
+      # @stats[:r] = batting.r
+      # @stats[:h] = batting.h
+      # @stats[:ab] = batting.ab
+      # @stats[:hr] = batting.hr
+      # @stats[:rbi] = batting.rbi
+      # @stats[:sb] = batting.sb
+
+    end
+
+    erb :league_page
+    # League.find(params[:league_name]).teams
+  end
+
+  def league_check
+    @err_message = "That League does not exist"
+    League.all.each do |l|
+      if l.league_name == params[:league_name]
+        @err_message = nil
+      end
+    end
+    if @err_message
+      session[:error_league] = @err_message
+      redirect '/league'
+    end
+  end
+
+  def simulate_batting(stats,abs)
+    results = Hash.new
+    results = {:hr => 0,
+      :r => 0,
+      :rbi => 0,
+      :ab => 0,
+      :h =>0,
+      :sb =>0 }
+    abs.times do
+      if stats.ab > 0
+
+        ba = (stats.h.to_f/stats.ab.to_f)
+        if rand < ba
+          results[:h] += 1
+          hit = true
+          p "Hit"
+        end
+        if hit
+          hr_ratio = (stats.hr.to_f/stats.h.to_f)
+          run_ratio = (stats.r.to_f/stats.h.to_f)
+          sb_ratio = (stats.sb.to_f/stats.h.to_f)
+          if rand < hr_ratio
+            results[:hr] += 1
+            results[:r] += 1
+            results[:rbi] += [1,2,3,4].sample
+            p "Homerun"
+          else
+            if rand < run_ratio
+            results[:r] += 1
+            p "run"
+            end
+            results[:rbi] += [0,1,2,3].sample
+            if rand < sb_ratio
+              results[:sb] += 1
+            end
+          end
+        end
+      end
+      results[:ab] += 1
+    end
+    return results
+  end
+
+  def atbats
+    case rand.round(2)
+    when 0 .. 0.04
+      3
+    when 0.05 .. 0.84
+      4
+    when 0.85 .. 0.94
+      5
+    else
+      6
+    end
   end
 end
