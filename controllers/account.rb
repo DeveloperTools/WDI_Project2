@@ -33,7 +33,7 @@ class AccountController < ApplicationController
 
         session[:login_message] = nil
         session[:current_account] = login_account.account_name
-        redirect "/account_profile"
+        redirect "/league"
 
       else
 
@@ -56,7 +56,7 @@ class AccountController < ApplicationController
 
       session[:login_message] = nil
       session[:current_account] = new_account.account_name
-      redirect "/account_profile"
+      redirect "/league"
 
     end
 
