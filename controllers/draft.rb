@@ -45,16 +45,26 @@ get '/random' do
       item = Player.all.sample
       end
       batting = item.batting_records
-      playerjson = item.attributes
-      playerjson[:batting] = batting
-    @playersarray.push(playerjson)
+      playerhash = item.attributes
+      playerhash[:batting] = batting
+    @playersarray.push(playerhash)
   end
   return @playersarray.to_json
 end
 
-get '/:search' do
+get '/search/:searchterm' do
 # return player searched for
-
+  if params[:searchterm] == nil
+    return
+  end
+  @playersarray = Array.new
+  searchresults = Player.where("namefirst LIKE ? OR namelast LIKE ?", "%#{params[:searchterm]}%", "%#{params[:searchterm]}%").limit(10)
+  searchresults.each do |player|
+    playerhash = player.attributes
+    playerhash[:batting] = player.batting_records
+    @playersarray.push(playerhash)
+  end
+  return @playersarray.to_json
 end
 
 
