@@ -42,6 +42,31 @@ post '/select' do
   return p "team full"
 end
 
+post '/selectpitcher' do
+  puts params
+  @result = Draft.find(session[:current_team])
+  # if @team.id
+  #   @result = Draft.find(@team.id)
+  # else
+  #   return nil
+  # end
+  # check whether batter or pitcher1_id
+  7.times do |player|
+    playerindex = "pitcher" + (player + 1).to_s + "_id"
+    yearindex = "pitcher" + (player + 1).to_s + "_yearid"
+    if @result[playerindex.to_sym] == nil
+      binding.pry
+      @result[playerindex.to_sym] = params[:name]
+      @result[yearindex.to_sym] = params[:year]
+      @result.save
+      return p "added pitcher to team"
+    end
+  end
+  return p "team full"
+end
+
+
+
 get '/random' do
   @team = session[:current_team]
   @playersarray = Array.new
