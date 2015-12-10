@@ -39,10 +39,10 @@ end
 get '/random' do
   @team = session[:current_team]
   @playersarray = Array.new
-  5.times do |item|
-    item = Player.all.sample
+  10.times do |item|
+    item = Player.offset(rand * Player.count).first
       while !item.batting_records
-      item = Player.all.sample
+      item = Player.offset(rand * Player.count).first
       end
       batting = item.batting_records
       playerhash = item.attributes
@@ -58,7 +58,7 @@ get '/search/:searchterm' do
     return
   end
   @playersarray = Array.new
-  searchresults = Player.where("namefirst LIKE ? OR namelast LIKE ?", "%#{params[:searchterm]}%", "%#{params[:searchterm]}%").limit(10)
+  searchresults = Player.where("namefirst LIKE ? OR namelast LIKE ?", "%#{params[:searchterm]}%", "%#{params[:searchterm]}%").limit(20)
   searchresults.each do |player|
     playerhash = player.attributes
     playerhash[:batting] = player.batting_records
