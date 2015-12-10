@@ -1,5 +1,9 @@
 //
 //
+function resetDraftPlayerList() {
+  $(".draftPlayer").empty();
+}
+
 function updateDraftPlayerList(playerList){
   //
   var $draftList = $("#draftList");

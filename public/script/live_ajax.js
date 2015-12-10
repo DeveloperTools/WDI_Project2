@@ -42,3 +42,26 @@ function draftPlayer(name,year) {
     // console.log(data);
   });
 }
+
+function playerSearch(searchterm) {
+  var searchurl = '/draft/search/' + searchterm;
+  $.ajax({
+    url: searchurl,
+    type: 'GET',
+    dataType: 'json',
+    })
+    //
+    .done(function(data) {
+      resetDraftPlayerList();
+      updateDraftPlayerList(data);
+      console.log("done");
+    })
+    //
+    .fail(function() {
+      console.log("error");
+    })
+    //
+    .always(function() {
+      console.log("complete");
+    });
+}
