@@ -43,6 +43,29 @@ function draftPlayer(name,year) {
   });
 }
 
+function draftPitcher(name,year) {
+  var playerSelected = {
+    name: name,
+    year: year
+  };
+  // console.log(playerSelected;
+  //
+  $.ajax({
+    url: '/draft/selectpitcher',
+    type: 'POST',
+    dataType: 'json',
+    data: playerSelected
+  })
+  .done(function (data) {
+    // console.log(data);
+    // console.log(JSON.stringify(data));
+  })
+  .fail(function (data) {
+    // console.log(data);
+  });
+}
+
+
 function playerSearch() {
   searchterm = $('#searchbox').val();
   var searchurl = '/draft/search/' + searchterm;
