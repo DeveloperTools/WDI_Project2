@@ -61,7 +61,6 @@ class LeagueController < ApplicationController
         end
         p bat
       end
-      binding.pry
       results = simulate_batting(batting,atbats)
       team.r_total = results[:r]
       team.h_total = results[:h]
@@ -71,7 +70,7 @@ class LeagueController < ApplicationController
       team.sb_total = results[:sb]
       team.save
     end
-    redirect 'myleagues/' + params[:league_name]
+    redirect '/league/myleagues/' + params[:league_name]
   end
 
   def league_check
