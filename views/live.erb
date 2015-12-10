@@ -12,28 +12,27 @@
   <div class="row">
     <div class="ten columns">
     <!-- LEFT COL -->
-      <div class="left_col" id="draftList">
-        <h3>
-          <p>
-            Team <%= session[:team_name] %>
-          </p>
-          <p>
-            league_name <%= session[:league_name] %>
-          </p>
-        </h3>
+      <div class="draftHeader"><h3>
+          <h3>Draft for <%= session[:current_team] %> in league <%= session[:league_name] %></p></h3>
       </div>
-    <!-- END LEFT COL -->
-    </div>
 
-    <div class="two columns">
-    <!-- RIGHT COL -->
       <form class="draftSearch" action="#">
         <input type="text" id="searchbox" name="" placeholder="Player Name">
         <input type="button" value="Find Player" onclick="playerSearch()">
         <!--add hidden text box to prevent users from submitting form by pressing enter key-->
         <input type="text" style="display: none;">
       </form>
-      <div class="draftSearchResults">
+
+      <div class="left_col" id="draftList">
+
+      </div>
+    <!-- END LEFT COL -->
+    </div>
+
+    <div class="two columns">
+    <!-- RIGHT COL -->
+
+      <div id="draftSearchResults">
       </div>
     <!-- END RIGHT COL -->
     </div>

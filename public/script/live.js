@@ -125,17 +125,3 @@ function createClickEvent_expand(playerDiv, nameDiv){
     createClickEvent_collapse(playerDiv, nameDiv);
   })
 }
-
-// function createClickEvent_collapse(playerDiv, nameDiv) {
-//   nameDiv.click(function(){
-//     for (var n = 0; n < 20; n++) {
-//       if (playerDiv.children(".statsContainer").eq(n).is("statsContainer")) {
-//         playerDiv.children(".statsContainer").eq(n).addClass("collapseContainer");
-//         playerDiv.children(".statsContainer").eq(n).removeClass("statsContainer");
-//       } else {
-//         playerDiv.children(".collapseContainer").eq(n).addClass("statsContainer");
-//         playerDiv.children(".collapseContainer").eq(n).removeClass("collapseContainer");
-//       }
-//     }
-//   })
-// }
