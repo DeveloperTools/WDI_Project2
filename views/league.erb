@@ -10,10 +10,10 @@
   <div class="row">
     <div class="twelve columns">
 
-      <h3>Welcome back <%= session[:current_account] %>!</h3>
+      <h2><strong>Welcome back <%= session[:current_account] %>!</strong></h2>
       <h4>Create a new league, draft for a league you've been invited to or simulate a season for a league you've already joined!</h4>
 
-      <h5><strong>Create a new league and invite friends!</strong></h5>
+      <div class="header create">Create a new league and invite friends!</div>
       <form id="createLeague" class="inline" action="/league/create" method="post">
         <input id="league_name" class="formInput" type="text" name="league_name" placeholder="League Name">
         <input id="owner_one" class="formInput" type="text" name="team1_owner" placeholder="Team 1 Owner">
@@ -21,11 +21,11 @@
         <input class="button-primary formInput" type="button" value="submit" onclick="createLeague()"/>
       </form>
 
-      <h5><strong>You've been invited to draft in these leagues!</strong></h5>
+      <div class="header notDrafted">You've been invited to draft in these leagues!</div>
       <div id="notDrafted">
       </div>
 
-      <h5><strong>You're part of the following leagues</strong></h5>
+      <div class="header drafted">You're part of the following leagues</div>
       <div id="drafted">
       </div>
 

@@ -26,17 +26,21 @@ function addLeagueToView(name, draftComplete, leagueid) {
   //
   $league = $("<div>", {id: name, class: "leagueName"});
   $league.text(name);
-  $buttonDetail = $("<input>", {type: "submit", name: "detail", value: "VIEW / SIMULATE", class: "button-primary buttonLeague detail"});
-  $buttonDraft = $("<input>", {type: "submit", name: "draft", value: "DRAFT NOW!", class: "button-primary buttonLeague draft"});
-  $hiddenid = $("<input>", {type: "hidden", value: leagueid});
-  $form_draft = $("<form>", {action: "/draft"}
-  $form_detail = $("<form>", {action: "/myleagues/"})
+  $button_detail = $("<input>", {type: "submit", name: "detail", value: "VIEW / SIMULATE", class: "button-primary buttonLeague detail"});
+  $button_draft = $("<input>", {type: "submit", name: "draft", value: "DRAFT NOW!", class: "button-primary buttonLeague draft"});
+  $hiddenid = $("<input>", {type: "hidden", value: name, name: "league_name"});
+  $form_draft = $("<form>", {class: "form", method: "GET", action: "/draft"});
+  $form_detail = $("<form>", {class: "form", method: "GET", action: "/myleagues/:" + name + ""});
   //
   if (draftComplete) {
-    $league.append($buttonDetail);
+    $form_detail.append($hiddenid);
+    $form_detail.append($button_detail);
+    $league.append($form_detail);
     $("#drafted").append($league);
   } else {
-    $league.append($buttonDraft);
+    $form_draft.append($hiddenid);
+    $form_draft.append($button_draft);
+    $league.append($form_draft);
     $("#notDrafted").append($league);
   }
 
