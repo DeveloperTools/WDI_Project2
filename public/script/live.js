@@ -2,41 +2,99 @@
 //
 function updateDraftPlayerList(playerList){
   //
-  $draftList = $("#draftList");
+  var $draftList = $("#draftList");
   console.table(playerList);
   //
-  for (var i in playerList) {
+  for (var player in playerList) {
     // construct divs for players in list
-    var $player = $("<div>", {id: playerList[i].playerid, class: "draftPlayer"});
+    var $player = $("<div>", {id: playerList[player].playerid, class: "draftPlayer"});
     var $name = $("<div>", {class: "playerName"});
-    var $stats = $("<div>", {class: "stats"});
-
-    $name.html(playerList[i].namefirst + " " + playerList[i].namelast);
-    for (var y in playerList[i.batting]){
-      
-    }
-
-    $stats.html();
+    var $headerContainer = $("<div>", {class: "headerContainer"})
     //
-    // add divs to player then to page
+    // APPEND NAME to PLAYER
+    $name.text(playerList[player].namefirst + " " + playerList[player].namelast);
     $player.append($name);
-    $player.append($stats);
+    //
+    // STATS HEADER
+    var battingColHeaders = ["YEAR","HITS","RUNS","H.RUNS","RBI","S.BASES"];
+    for (var i = 0; i < 6; i++){
+      $div = $("<div>", {class: "headerName"});
+      $div.text(battingColHeaders[i]);
+      $headerContainer.append($div);
+    }
+    $player.append($headerContainer);
+    // STATS
+    //
+    for (var year in playerList[player].batting) {
+      var yearNum = playerList[player].batting[year].yearid;
+      var hits = playerList[player].batting[year].h;
+      var runs = playerList[player].batting[year].r;
+      var h_runs = playerList[player].batting[year].hr;
+      var rbis = playerList[player].batting[year].rbi;
+      var s_bases = playerList[player].batting[year].sb;
+
+      var $statsContainer = $("<div>", {class: "statsContainer"})
+      var $year = $("<div>", {class: "year stats"}).text(yearNum);
+      var $hits = $("<div>", {class: "hits stats"}).text(hits);
+      var $runs = $("<div>", {class: "runs stats"}).text(runs);
+      var $h_runs = $("<div>", {class: "h_runs stats"}).text(h_runs);
+      var $rbis = $("<div>", {class: "rbis stats"}).text(rbis);
+      var $s_bases = $("<div>", {class: "s_bases stats"}).text(s_bases);
+
+      $statsContainer.append($year);
+      $statsContainer.append($hits);
+      $statsContainer.append($runs);
+      $statsContainer.append($h_runs);
+      $statsContainer.append($rbis);
+      $statsContainer.append($s_bases);
+      $player.append($statsContainer);
+    }
+    //
+    // ADD TO PAGE with CLICK FUNCTION to COLLAPSE HISTORY
+
     $draftList.append($player);
+    //
+    // ADD EVENT TO COLLAPSE ON CLICK
+    createClickEvent_collapse($player, $name);
   }
 }
 
+function createClickEvent_collapse(playerDiv, nameDiv) {
+  nameDiv.click(function(){
+    //
+    //
+    playerDiv.find(".stats").css("display", "none");
+    playerDiv.children(".statsContainer").delay(20).animate({height: "0px"}, 200);
+    //
+    //
+    nameDiv.off();
+    createClickEvent_expand(playerDiv, nameDiv);
+  })
+}
 
+function createClickEvent_expand(playerDiv, nameDiv){
+  nameDiv.click(function(){
+    //
+    //
+    playerDiv.find(".stats").css("display", "inline-block");
+    playerDiv.children(".statsContainer").animate({height: "24px"}, 200),
+    //
+    //
+    nameDiv.off();
+    createClickEvent_collapse(playerDiv, nameDiv);
+  })
+}
 
-//
-//
-// function updateDraftPlayerList(playerList){
-//   var playerList = playerList;
-//
-//
-//   for (var i in playerList) {
-//     $('.liveDraft').append("<div id=\"" + playerList[i].playerid + "\">"+playerList[i].namefirst + " " + playerList[i].namelast + " </div>");
-//     for (var j in playerList[i].batting) {
-//       $('#' + playerList[i].playerid).append("<li>Year: " + playerList[i].batting[j].yearid + " Hits:" + playerList[i].batting[j].h + " Runs:" + playerList[i].batting[j].r + " Home Runs:" + playerList[i].batting[j].hr + " RBIs:" + playerList[i].batting[j].rbi + " Stolen Bases:" + playerList[i].batting[j].sb + " <button id=\"" + playerList[i].playerid + "," + playerList[i].batting[j].yearid +  "\" onclick=\"draftPlayer(" + "\'" + playerList[i].playerid + "\'" + "," + playerList[i].batting[j].yearid + ");\">Draft</button>" + "</li>");
+// function createClickEvent_collapse(playerDiv, nameDiv) {
+//   nameDiv.click(function(){
+//     for (var n = 0; n < 20; n++) {
+//       if (playerDiv.children(".statsContainer").eq(n).is("statsContainer")) {
+//         playerDiv.children(".statsContainer").eq(n).addClass("collapseContainer");
+//         playerDiv.children(".statsContainer").eq(n).removeClass("statsContainer");
+//       } else {
+//         playerDiv.children(".collapseContainer").eq(n).addClass("statsContainer");
+//         playerDiv.children(".collapseContainer").eq(n).removeClass("collapseContainer");
+//       }
 //     }
-//   }
+//   })
 // }
