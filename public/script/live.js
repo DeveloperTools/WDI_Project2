@@ -55,6 +55,8 @@ function updateDraftPlayerList(playerList){
       $statsContainer.append($draft_button);
       $player.append($statsContainer);
     }
+
+  
     //
     // ADD TO PAGE with CLICK FUNCTION to COLLAPSE HISTORY
 

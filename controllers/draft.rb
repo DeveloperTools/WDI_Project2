@@ -11,29 +11,28 @@ post '/' do
     :team_name => params[:team_name],
     :league_name => params[:league_name]
   )
-  session[:current_team] = @team
-  redirect 'draft/live'
+  session[:current_team] = @team.id
+  redirect '/draft/live'
 end
 
 get '/live' do
-  @team = session[:current_team]
+  @team = Draft.find(session[:current_team])
   erb :live
 end
 
 post '/select' do
   puts params
-  @team = session[:current_team]
-  if @team.id
-    @result = Draft.find(@team.id)
-  else
-    return nil
-  end
-
-  4.times do |player|
+  @result = Draft.find(session[:current_team])
+  # if @team.id
+  #   @result = Draft.find(@team.id)
+  # else
+  #   return nil
+  # end
+  # check whether batter or pitcher1_id
+  9.times do |player|
     playerindex = "player" + (player + 1).to_s + "_id"
     yearindex = "player" + (player + 1).to_s + "_yearid"
     if @result[playerindex.to_sym] == nil
-      binding.pry
       @result[playerindex.to_sym] = params[:name]
       @result[yearindex.to_sym] = params[:year]
       @result.save
@@ -49,12 +48,9 @@ get '/random' do
   totalrecords = Player.count
   10.times do |item|
     item = Player.offset(rand * totalrecords).first
-      while !item.batting_records
-      item = Player.offset(rand * totalrecords).first
-      end
-      batting = item.batting_records
       playerhash = item.attributes
-      playerhash[:batting] = batting
+      playerhash[:batting] = item.batting_records
+      playerhash[:pitching] = item.pitching_records
     @playersarray.push(playerhash)
   end
   return @playersarray.to_json
@@ -70,6 +66,7 @@ get '/search/:searchterm' do
   searchresults.each do |player|
     playerhash = player.attributes
     playerhash[:batting] = player.batting_records
+    playerhash[:pitching] = player.pitching_records
     @playersarray.push(playerhash)
   end
   return @playersarray.to_json
