@@ -27,9 +27,11 @@
 
     <div class="two columns">
     <!-- RIGHT COL -->
-      <form class="draftSearch" action="" method="post">
-        <input type="search" id="searchbox" name="search" placeholder="Player Name">
+      <form class="draftSearch" action="#">
+        <input type="text" id="searchbox" name="" placeholder="Player Name">
         <input type="button" value="Find Player" onclick="playerSearch()">
+        <!--add hidden text box to prevent users from submitting form by pressing enter key-->
+        <input type="text" style="display: none;">
       </form>
       <div class="draftSearchResults">
       </div>
