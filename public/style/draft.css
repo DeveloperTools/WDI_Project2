@@ -74,6 +74,9 @@ input:-webkit-autofill {
   #login_right_col {
     margin-top: 10px; }
 
+  .inputfield {
+    width: 70%; }
+
   .welcome_message h1 {
     font-size: 4rem;
     font-weight: normal; } }

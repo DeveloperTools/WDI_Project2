@@ -11,8 +11,8 @@
   <h1><strong><%= session[:current_account] %></strong> name your team so you can draft players for league <strong><%= session[:current_league] %></strong></h1>
   <div class="row">
     <form class="draft" action="/draft" method="post">
-      <input type="text" name="team_name" placeholder="Team Name">
-      <input type="submit" name="name" value="Start Draft">
+      <input type="text" name="team_name" placeholder="Team Name" class="inputfield">
+      <input type="submit" name="name" value="Start Draft" class="button-primary">
     </form>
 
   </div>
