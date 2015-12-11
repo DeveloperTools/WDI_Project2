@@ -22,19 +22,33 @@ input:-webkit-autofill {
   margin-left: auto;
   margin-right: auto; }
 
+.playerName {
+  font-size: 2rem;
+  font-weight: bold;
+  display: block;
+  color: white;
+  padding-left: 2%;
+  padding-top: 10px;
+  padding-bottom: 4px;
+  height: 30px;
+  margin-top: 5px; }
+
 .teamName {
   font-weight: bold;
   font-size: 2rem;
-  color: white;
-  background-color: rgba(255, 0, 0, 0.5); }
+  color: black; }
+
+.batter {
+  background-color: rgba(58, 91, 208, 0.7); }
+
+.pitcher {
+  background-color: rgba(255, 0, 0, 0.7); }
 
 .battersHeader {
-  font-size: 3rem;
-  background-color: rgba(143, 143, 143, 0.6); }
+  font-size: 3rem; }
 
 .pitchersHeader {
-  font-size: 3rem;
-  background-color: rgba(143, 143, 143, 0.6); }
+  font-size: 3rem; }
 
 #container_logo img {
   position: relative;
@@ -80,17 +94,6 @@ input:-webkit-autofill {
 
 .draftPlayer {
   margin-bottom: 3px; }
-
-.playerName {
-  font-size: 2rem;
-  font-weight: bold;
-  display: block;
-  background-color: rgba(58, 91, 208, 0.5);
-  color: white;
-  padding-left: 2%;
-  padding-top: 10px;
-  padding-bottom: 4px;
-  height: 30px; }
 
 .headerContainer {
   width: 100%;
