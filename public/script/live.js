@@ -113,7 +113,8 @@ function updateDraftPlayerList(playerList){
     createClickEvent_collapse($player, $name);
   }
 }
-
+var fulldraft_batters = false;
+var fulldraft_pitchers = false;
 function updateDraftedBatterList(draftedList) {
   $("#draftedBatters").empty();
   $header = $("<div>", {class: "drafted_list_header"});
@@ -132,7 +133,8 @@ function updateDraftedBatterList(draftedList) {
       $("#draftedBatters").append($playerContainer);
       numBatters++;
       if (numBatters == 9) {
-        displayDraftComplete(numBatters);
+        fulldraft_batters = true;
+        displayDraftComplete();
       }
     }
   }
@@ -143,6 +145,7 @@ function updateDraftedPitcherList(draftedList) {
   $header = $("<div>", {class: "drafted_list_header"});
   $header.text("DRAFTED PITCHERS");
   $("#draftedPitchers").append($header);
+  var numPitchers = 0;
   for (var i = 0; i < 100; i++) {
     if (draftedList["pitcher" + i + "_id"] != undefined) {
       $playerContainer = $("<div>", {class: "drafted_player"});
@@ -153,13 +156,24 @@ function updateDraftedPitcherList(draftedList) {
       $playerContainer.append($player);
       $playerContainer.append($year);
       $("#draftedPitchers").append($playerContainer);
+      numPitchers++;
+      if (numPitchers == 7) {
+        fulldraft_pitchers = true;
+        displayDraftComplete();
+      }
     }
   }
 }
 
 function displayDraftComplete (){
-  // var $draft_complete = $("<button>", {class: "button-primary draft_button", onclick: "draftPlayer(\"" + playerList[player].playerid + "\"," + yearNum + ")"}).text("draft");
-  // $("#draftedBatters").prepend()
+  if (fulldraft_batters && fulldraft_pitchers) {
+    $(".draft_button").css("display", "none");
+    var $draft_complete = $("<button>", {class: "button-primary draft_complete"}).text("FINISH DRAFT");
+    $draft_complete.click(function(){
+      redirectToLeagueDetail();
+    });
+    $("#draftedPitchers").append($draft_complete);
+  }
 }
 
 function createClickEvent_collapse(playerDiv, nameDiv) {
