@@ -37,13 +37,13 @@ function draftPlayer(name,year) {
   .done(function (data) {
     updateDraftedBatterList(data);
     // console.table(data);
-    console.log(data);
+    // console.log(data);
     // console.log(JSON.stringify(data));
   })
   .fail(function (data) {
     // console.log(data);
   });
-}
+};
 
 function draftPitcher(name,year) {
   var playerSelected = {
@@ -60,13 +60,13 @@ function draftPitcher(name,year) {
   })
   .done(function (data) {
     updateDraftedPitcherList(data);
-    console.log(data);
+    // console.log(data);
     // console.log(JSON.stringify(data));
   })
   .fail(function (data) {
     // console.log(data);
   });
-}
+};
 
 
 function playerSearch() {
@@ -90,5 +90,24 @@ function playerSearch() {
     //
     .always(function() {
       console.log("complete");
+    });
+};
+
+function redirectToLeagueDetail() {
+  $.ajax({
+    url: '/draft/savedraft',
+    type: 'POST',
+    dataType: 'json',
+    })
+    //
+    .done(function(data) {
+    })
+    //
+    .fail(function() {
+      // console.log("error");
+    })
+    //
+    .always(function() {
+      // console.log("complete");
     });
 }
