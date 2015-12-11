@@ -36,7 +36,9 @@ input:-webkit-autofill {
 #simButton {
   height: 80px;
   font-size: 2.2rem;
-  background-color: #a71212; }
+  background-color: #a71212;
+  border-color: #740606;
+  border-width: thick; }
 
 .teamName {
   font-weight: bold;
