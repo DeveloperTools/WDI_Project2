@@ -1,5 +1,5 @@
 
-<link rel="stylesheet" href="/style/live.css">
+<link rel="stylesheet" href="/style/league_detail.css">
 
 <div id="page_header">
   <div id="container_logo">
@@ -10,9 +10,8 @@
 <div class="container">
   <div class="row">
     <div class="six columns">
-<input
       <p>
-        League Page
+        <h1>Details for League: <b><%=session[:league_name]%></b></h1>
       </p>
       <div id="results">
       </div>
@@ -36,6 +35,9 @@ $.ajax({
   console.log("success");
   teamjson = data;
   console.log(data);
+  var $team1 = $("<div>", {class: "teamName"}).text("Team 1 owned by:");
+  $('#results').append($team1);
+
   $('#results').append('Batters');
   for (var i = 1; i < 10 ; i++) {
     var pid = "player" + i + "_id";
@@ -54,6 +56,10 @@ $.ajax({
     $player.append($name);
     $('#results').append($player);
   }
+
+  var $team2 = $("<div>", {class: "teamName"}).text("Team 2 owned by:");
+  $('#results').append($team2);
+
   $('#results').append('Batters');
   for (var i = 1; i < 10 ; i++) {
     var pid = "player" + i + "_id";
