@@ -40,7 +40,7 @@ end
 
 post '/select' do
   puts params
-  @result = Draft.find(session[:current_team])
+  @result = Draft.find_by(team_name: session[:current_team])
   # if @team.id
   #   @result = Draft.find(@team.id)
   # else
@@ -62,7 +62,7 @@ end
 
 post '/selectpitcher' do
   puts params
-  @result = Draft.find(session[:current_team])
+  @result = Draft.find_by(team_name: session[:current_team])
   # if @team.id
   #   @result = Draft.find(@team.id)
   # else
