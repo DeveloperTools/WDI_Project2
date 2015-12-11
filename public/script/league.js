@@ -31,7 +31,7 @@ function addLeagueToView(name, draftComplete, leagueid) {
   $button_draft = $("<input>", {type: "submit", name: "draft", value: "DRAFT NOW!", id: "button", class: "button-primary buttonLeague draft"});
   $hiddenid = $("<input>", {type: "hidden", value: name, name: "league_name"});
   $form_draft = $("<form>", {class: "form", method: "GET", action: "/draft"});
-  $form_detail = $("<form>", {class: "form", method: "GET", action: "/myleagues/:" + name + ""});
+  $form_detail = $("<form>", {class: "form", method: "GET", action: "/league/myleagues/" + name + ""});
   //
   if (draftComplete) {
     $form_detail.append($hiddenid);
