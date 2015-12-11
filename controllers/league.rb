@@ -114,6 +114,11 @@ class LeagueController < ApplicationController
         team.sb_total += results[:sb]
         team.save
       end
+      team.er_total = 0
+      team.ip_total = 0
+      team.k_total = 0
+      team.sv_total = 0
+      team.w_total = 0
       7.times do |pitcher|
         pitcherid = "pitcher" + (pitcher + 1).to_s + "_id"
         yearid = "pitcher" + (pitcher + 1).to_s + "_yearid"
@@ -128,6 +133,7 @@ class LeagueController < ApplicationController
           p pitch
         end
         pitchresults = simulate_pitching(pitching,innings)
+        team.w_total += pitchresults[:w]
         team.er_total += pitchresults[:er]
         team.ip_total += pitchresults[:ip]
         team.k_total += pitchresults[:k]
@@ -136,6 +142,7 @@ class LeagueController < ApplicationController
       end
       team.era_total = (team.er_total.to_f * 9.to_f / team.ip_total.to_f).round(2)
       team.ba_total = (team.h_total.to_f / team.ab_total.to_f).round(3)
+      team.save
     end
     redirect '/league/myleagues/' + params[:league_name]
     end
