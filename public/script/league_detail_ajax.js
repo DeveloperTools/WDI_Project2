@@ -72,7 +72,8 @@ function runSimulation() {
   // body...
   $.ajax({
     url: simUrl,
-    type: 'GET'
+    type: 'GET',
+    dataType: 'json'
   })
   .done(function(data) {
     console.log("success running sim");

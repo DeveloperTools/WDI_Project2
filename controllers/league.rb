@@ -81,6 +81,8 @@ class LeagueController < ApplicationController
         end
       end
       teamindex = "team" + teamnum.to_s
+      @players.push(@team.team_name)
+      @players.push(@team.team_owner)
       @result[teamindex.to_sym] = @players
     end
     return @result.to_json
