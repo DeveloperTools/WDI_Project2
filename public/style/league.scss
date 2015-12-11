@@ -41,8 +41,12 @@ input:-webkit-autofill {
   width: 100%;
 }
 
+.league_container {
+}
+
 .form {
-  background-color: blue;
+  height: 100%;
+  display: inline;
 }
 
 .header {
@@ -52,23 +56,33 @@ input:-webkit-autofill {
 }
 
 .leagueName{
-  width: 100%;
+  width: 70%;
   font-weight: bold;
-  font-size: 2.5rem;
+  font-size: 3.5rem;
   height: 80px;
-  padding-left: 10px;
+  padding-left: 20px;
   margin-bottom: 1px;
   background-color: rgba(255, 255, 255, 0.3);
+  display: inline-block;
 }
 
 .formInput {
-  width: 24%;
+  width: 23.3%;
   margin: 0;
   padding: 0;
 }
 
 .buttonLeague {
-  float: right;
+  border-radius: 0px;
+  height: 100%;
+}
+
+#button {
+  position: relative;
+  top: 4px;
+  width: 25%;
+  border-radius: 0px;
+  height: 80px;
 }
 
 .draftPlayer {
