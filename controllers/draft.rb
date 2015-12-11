@@ -126,8 +126,7 @@ get '/savedraft' do
     record.team2_name = team
   end
   record.save
-
-  redirect "/league/myleagues/:" + session[:current_league]
+  redirect "/league/myleagues/" + session[:current_league]
 
 end
 
