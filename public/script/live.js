@@ -119,6 +119,7 @@ function updateDraftedBatterList(draftedList) {
   $header = $("<div>", {class: "drafted_list_header"});
   $header.text("DRAFTED BATTERS");
   $("#draftedBatters").append($header);
+  var numBatters = 0;
   for (var i = 0; i < 100; i++) {
     if (draftedList["player" + i + "_id"] != undefined) {
       $playerContainer = $("<div>", {class: "drafted_player"});
@@ -129,6 +130,10 @@ function updateDraftedBatterList(draftedList) {
       $playerContainer.append($player);
       $playerContainer.append($year);
       $("#draftedBatters").append($playerContainer);
+      numBatters++;
+      if (numBatters == 9) {
+        displayDraftComplete(numBatters);
+      }
     }
   }
 }
@@ -150,6 +155,11 @@ function updateDraftedPitcherList(draftedList) {
       $("#draftedPitchers").append($playerContainer);
     }
   }
+}
+
+function displayDraftComplete (){
+  // var $draft_complete = $("<button>", {class: "button-primary draft_button", onclick: "draftPlayer(\"" + playerList[player].playerid + "\"," + yearNum + ")"}).text("draft");
+  // $("#draftedBatters").prepend()
 }
 
 function createClickEvent_collapse(playerDiv, nameDiv) {

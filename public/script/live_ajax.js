@@ -70,7 +70,7 @@ function draftPitcher(name,year) {
 
 
 function playerSearch() {
-  searchterm = $('#searchbox').val();
+  searchterm = $('#search_box').val();
   var searchurl = '/draft/search/' + searchterm;
   $.ajax({
     url: searchurl,
