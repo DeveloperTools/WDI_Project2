@@ -77,8 +77,8 @@ function runSimulation() {
     console.log(data);
     simjson = data;
     $('#sim_results').empty();
-    var $team1 = $("<div>", {class: "teamName teamTwo"}).text(data[0].team_name + " Results :");
-    var $team2 = $("<div>", {class: "teamName teamTwo"}).text(data[1].team_name + " Results :");
+    var $team1 = $("<div>", {class: "resultsName"}).text(data[0].team_name + " Results :");
+    var $team2 = $("<div>", {class: "resultsName"}).text(data[1].team_name + " Results :");
     $('#sim_results').append($team1);
     $('#sim_results').append($team2);
     for (var i in data) {

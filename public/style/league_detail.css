@@ -15,6 +15,9 @@ input:-webkit-autofill {
   margin-bottom: 40px;
   text-align: center; }
 
+.resultsName {
+  font-size: 2rem; }
+
 #container_logo {
   height: 220px;
   width: auto;
