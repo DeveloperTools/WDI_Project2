@@ -82,6 +82,20 @@ function runSimulation() {
   .done(function(data) {
     console.log("success running sim");
     console.log(data);
+    for (var i in data) {
+      data[i].ab_total
+      data[i].ba_total
+      data[i].er_total
+      data[i].era_total
+      data[i].h_total
+      data[i].hr_total
+      data[i].ip_total
+      data[i].k_total
+      data[i].r_total
+      data[i].rbi_total
+      data[i].sb_total
+      data[i].sv_total
+    }
   })
   .fail(function() {
     console.log("error running sim");
