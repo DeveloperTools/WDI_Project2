@@ -64,17 +64,21 @@ class LeagueController < ApplicationController
         playerindex = "player" + (player + 1).to_s + "_id"
         yearindex = "player" + (player + 1).to_s + "_yearid"
         playerid = team[playerindex.to_sym]
-        playername = Player.find(playerid).namefirst + " " + Player.find(playerid).namelast
-        playeryear = team[yearindex.to_sym]
-        @players.push(playername + " " + playeryear)
+        if playerid
+          playername = Player.find(playerid).namefirst + " " + Player.find(playerid).namelast
+          playeryear = team[yearindex.to_sym]
+          @players.push(playername + " " + playeryear)
+        end
       end
       7.times do |pitcher|
         pitcherindex = "pitcher" + (pitcher + 1).to_s + "_id"
         yearindex = "pitcher" + (pitcher + 1).to_s + "_yearid"
         pitcherid = team[pitcherindex.to_sym]
-        pitchername = Player.find(pitcherid).namefirst + " " + Player.find(pitcherid).namelast
-        pitcheryear = team[yearindex.to_sym]
-        @players.push(pitchername + " " + pitcheryear)
+        if pitcherid
+          pitchername = Player.find(pitcherid).namefirst + " " + Player.find(pitcherid).namelast
+          pitcheryear = team[yearindex.to_sym]
+          @players.push(pitchername + " " + pitcheryear)
+        end
       end
       teamindex = "team" + teamnum.to_s
       @result[teamindex.to_sym] = @players
