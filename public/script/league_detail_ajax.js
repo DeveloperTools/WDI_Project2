@@ -53,8 +53,8 @@ $.ajax({
     $('#results_teamTwo').append($player);
   }
   if (teamjson.team1[15] && teamjson.team2[15]){
-  var $simbutton = $("<button>", {class: "simButton", id: "simButton", onclick: "runSimulation();" });
-  $('#sim_button_container').append($simbutton);
+  var $simbutton = $("<button>", {class: "simButton u-full-width button-primary", id: "simButton", onclick: "runSimulation();" }).text("> >  SIMULATE GAME  < <");
+  $('.sim_button_container').append($simbutton);
   console.log("added simbutton");
   }
 
