@@ -23,8 +23,9 @@
 
 <script>
 
-var url = '/league/myleagues/<%=session[:league_name]%>/results';
+var url = '/league/myleagues/<%=session[:league_name]%>/teams';
 console.log(url);
+var teamjson;
 
 $.ajax({
   url: url,
@@ -33,7 +34,24 @@ $.ajax({
 })
 .done(function(data) {
   console.log("success");
+  teamjson = data;
   console.log(data);
+  for (var i = 1; i < 10 ; i++) {
+    var pid = "player" + i + "_id";
+    var $player = $("<div>", {class: "playerContainer", id: "player" + i});
+    var $name = $("<div>", {class: "playerName"});
+    $name.text("Batter " + i + ": " + teamjson.team1[i]);
+    $player.append($name);
+    $('#results').append($player);
+  }
+  for (var i = 10; i < 17 ; i++) {
+    var pid = "player" + i + "_id";
+    var $player = $("<div>", {class: "playerContainer", id: "player" + i});
+    var $name = $("<div>", {class: "playerName"});
+    $name.text("Pitcher " + i + ": " + teamjson.team1[i]);
+    $player.append($name);
+    $('#results').append($player);
+  }
 })
 .fail(function() {
   console.log("error");
@@ -41,6 +59,8 @@ $.ajax({
 .always(function() {
   console.log("complete");
 });
+
+console.log(teamjson);
 
 
 </script>
