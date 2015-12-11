@@ -50,7 +50,7 @@ $.ajax({
     var pid = "player" + i + "_id";
     var $player = $("<div>", {class: "playerContainer", id: "player" + i});
     var $name = $("<div>", {class: "playerName"});
-    $name.text("Pitcher " + i + ": " + teamjson.team1[i-1]);
+    $name.text("Pitcher " + (i-9) + ": " + teamjson.team1[i-1]);
     $player.append($name);
     $('#results').append($player);
   }
@@ -68,7 +68,7 @@ $.ajax({
     var pid = "player" + i + "_id";
     var $player = $("<div>", {class: "playerContainer", id: "player" + i});
     var $name = $("<div>", {class: "playerName"});
-    $name.text("Pitcher " + i + ": " + teamjson.team2[i-1]);
+    $name.text("Pitcher " + (i-9) + ": " + teamjson.team2[i-1]);
     $player.append($name);
     $('#results').append($player);
   }
