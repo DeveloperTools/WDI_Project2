@@ -68,7 +68,7 @@ class LeagueController < ApplicationController
         playeryear = team[yearindex.to_sym]
         @players.push(playername + " " + playeryear)
       end
-      5.times do |pitcher|
+      7.times do |pitcher|
         pitcherindex = "pitcher" + (pitcher + 1).to_s + "_id"
         yearindex = "pitcher" + (pitcher + 1).to_s + "_yearid"
         pitcherid = team[pitcherindex.to_sym]
