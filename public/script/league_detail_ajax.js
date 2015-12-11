@@ -53,7 +53,11 @@ $.ajax({
     $('#results_teamTwo').append($player);
   }
   if (teamjson.team1[15] && teamjson.team2[15]){
+<<<<<<< HEAD
   var $simbutton = $("<button>", {class: "simButton", id: "simButton", onclick: "runSimulation();" });
+=======
+  var $simbutton = $("<button>", {class: "simButton u-full-width button-primary", id: "simButton", onclick: "runSimulation();" }).text("> >  SIMULATE GAME  < <");
+>>>>>>> 43f4c8c95fc75ed73bf8f24220e44b51371e0db9
   $('.sim_button_container').append($simbutton);
   console.log("added simbutton");
   }
@@ -78,19 +82,6 @@ function runSimulation() {
   .done(function(data) {
     console.log("success running sim");
     console.log(data);
-    for (var i in data) {
-      data[i].ab_total
-      data[i].ba_total
-      data[i].er_total
-      data[i].era_total
-      data[i].h_total
-      data[i].hr_total
-      data[i].ip_total
-      data[i].k_total
-      data[i].r_total
-      data[i].rbi_total
-      data[i].sb_total
-      data[i].sv_total
   })
   .fail(function() {
     console.log("error running sim");
