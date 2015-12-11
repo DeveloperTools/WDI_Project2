@@ -47,7 +47,39 @@ class LeagueController < ApplicationController
     # if League.find(params[:league_name]).simulationcomplete = false
     #   return
     # end
+    @result = Array.new
+
     return @teams.to_json
+  end
+
+  get '/myleagues/:league_name/teams' do
+    league_check
+    @teams = League.find(params[:league_name]).teams
+    @result = Hash.new
+    teamnum = 0
+    @teams.each do |team|
+      @players = Array.new
+      teamnum += 1
+      9.times do |player|
+        playerindex = "player" + (player + 1).to_s + "_id"
+        yearindex = "player" + (player + 1).to_s + "_yearid"
+        playerid = team[playerindex.to_sym]
+        playername = Player.find(playerid).namefirst + " " + Player.find(playerid).namelast
+        playeryear = team[yearindex.to_sym]
+        @players.push(playername + " " + playeryear)
+      end
+      5.times do |pitcher|
+        pitcherindex = "pitcher" + (pitcher + 1).to_s + "_id"
+        yearindex = "pitcher" + (pitcher + 1).to_s + "_yearid"
+        pitcherid = team[pitcherindex.to_sym]
+        pitchername = Player.find(pitcherid).namefirst + " " + Player.find(pitcherid).namelast
+        pitcheryear = team[yearindex.to_sym]
+        @players.push(pitchername + " " + pitcheryear)
+      end
+      teamindex = "team" + teamnum.to_s
+      @result[teamindex.to_sym] = @players
+    end
+    return @result.to_json
   end
 
   get '/myleagues/:league_name/simulation' do

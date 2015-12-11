@@ -39,41 +39,47 @@ get '/live' do
 end
 
 post '/select' do
+  puts params
   @result = Draft.find_by(team_name: session[:current_team])
-  ran_once = false;
-
+  # if @team.id
+  #   @result = Draft.find(@team.id)
+  # else
+  #   return nil
+  # end
+  # check whether batter or pitcher1_id
   9.times do |player|
     playerindex = "player" + (player + 1).to_s + "_id"
     yearindex = "player" + (player + 1).to_s + "_yearid"
-
-    if @result[playerindex.to_sym] == nil && ran_once == false
-      puts "there is an open BATTER slot at" + playerindex
+    if @result[playerindex.to_sym] == nil
       @result[playerindex.to_sym] = params[:name]
       @result[yearindex.to_sym] = params[:year]
       @result.save
-      ran_once = true
+      return p "added player to team"
     end
   end
-
-  return @result.to_json
+  return p "team full"
 end
 
 post '/selectpitcher' do
+  puts params
   @result = Draft.find_by(team_name: session[:current_team])
-  ran_once = false
-
+  # if @team.id
+  #   @result = Draft.find(@team.id)
+  # else
+  #   return nil
+  # end
+  # check whether batter or pitcher1_id
   7.times do |player|
     playerindex = "pitcher" + (player + 1).to_s + "_id"
     yearindex = "pitcher" + (player + 1).to_s + "_yearid"
-    if @result[playerindex.to_sym] == nil && ran_once == false
-      puts "there is an open PITCHER slot at" + playerindex
+    if @result[playerindex.to_sym] == nil
       @result[playerindex.to_sym] = params[:name]
       @result[yearindex.to_sym] = params[:year]
       @result.save
-      ran_once = true
+      return p "added pitcher to team"
     end
   end
-  return @result.to_json
+  return p "team full"
 end
 
 
@@ -108,11 +114,5 @@ get '/search/:searchterm' do
   return @playersarray.to_json
 end
 
-get "/draftedlist" do
-
-  @team = Draft.find_by(team_name: session[:current_team])
-
-
-end
 
 end
