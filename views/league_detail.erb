@@ -40,7 +40,15 @@ $.ajax({
     var pid = "player" + i + "_id";
     var $player = $("<div>", {class: "playerContainer", id: "player" + i});
     var $name = $("<div>", {class: "playerName"});
-    $name.text(teamjson.team1[i]);
+    $name.text("Batter " + i + ": " + teamjson.team1[i]);
+    $player.append($name);
+    $('#results').append($player);
+  }
+  for (var i = 10; i < 17 ; i++) {
+    var pid = "player" + i + "_id";
+    var $player = $("<div>", {class: "playerContainer", id: "player" + i});
+    var $name = $("<div>", {class: "playerName"});
+    $name.text("Pitcher " + i + ": " + teamjson.team1[i]);
     $player.append($name);
     $('#results').append($player);
   }
