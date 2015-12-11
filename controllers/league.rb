@@ -148,7 +148,8 @@ class LeagueController < ApplicationController
       team.ba_total = (team.h_total.to_f / team.ab_total.to_f).round(3)
       team.save
     end
-    redirect '/league/myleagues/' + params[:league_name]
+    # redirect '/league/myleagues/' + params[:league_name]
+    return @teams.to_json
     end
 
   def league_check

@@ -78,7 +78,11 @@ $.ajax({
     $player.append($name);
     $('#results').append($player);
   }
-
+  if (teamjson.team1[15] && teamjson.team2[15]){
+  var $simbutton = $("<button>", {class: "simButton", id: "simButton", onclick: "runSimulation();" });
+  $('#results').append($simbutton);
+  console.log("added simbutton");
+  }
 
 })
 .fail(function() {
@@ -90,5 +94,23 @@ $.ajax({
 
 console.log(teamjson);
 
+function runSimulation() {
+  // body...
+  $.ajax({
+    url: '/league/myleagues/<%=session[:league_name]%>/simulation',
+    type: 'GET'
+  })
+  .done(function(data) {
+    console.log("success");
+    console.log(data);
+  })
+  .fail(function() {
+    console.log("error");
+  })
+  .always(function() {
+    console.log("complete");
+  });
+
+}
 
 </script>
