@@ -125,6 +125,9 @@ get '/savedraft' do
   else
     record.team2_name = team
   end
+  if record.team1_name && record.team2_name
+    record.draftcomplete = true
+  end
   record.save
   redirect "/league/myleagues/" + session[:current_league]
 
