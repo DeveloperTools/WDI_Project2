@@ -52,15 +52,10 @@ $.ajax({
     $player.append($name);
     $('#results_teamTwo').append($player);
   }
-  if (teamjson.team1[15] && teamjson.team2[15]){
-<<<<<<< HEAD
-  var $simbutton = $("<button>", {class: "simButton", id: "simButton", onclick: "runSimulation();" });
-=======
   var $simbutton = $("<button>", {class: "simButton u-full-width button-primary", id: "simButton", onclick: "runSimulation();" }).text("> >  SIMULATE GAME  < <");
->>>>>>> 43f4c8c95fc75ed73bf8f24220e44b51371e0db9
   $('.sim_button_container').append($simbutton);
   console.log("added simbutton");
-  }
+  
 
 })
 .fail(function() {
