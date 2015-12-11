@@ -11,7 +11,7 @@ $.ajax({
   var $battersHeader = $("<div>", {class: "battersHeader"}).text("BATTERS");
   var $pitchersHeader = $("<div>", {class: "pitchersHeader"}).text("PITCHERS");
 
-  var $team1 = $("<div>", {class: "teamName teamOne"}).text(current_account);
+  var $team1 = $("<div>", {class: "teamName teamOne"}).text(teamjson.team1[16]);
   $('#results_teamOne').append($team1);
   $('#results_teamOne').append("<div class='battersHeader'>BATTERS</div>");
   for (var i = 1; i < 10 ; i++) {
@@ -32,7 +32,7 @@ $.ajax({
     $('#results_teamOne').append($player);
   }
   //
-  var $team2 = $("<div>", {class: "teamName teamTwo"}).text(opponent_account);
+  var $team2 = $("<div>", {class: "teamName teamTwo"}).text(teamjson.team2[16]);
   $('#results_teamTwo').append($team2);
   $('#results_teamTwo').append("<div class='battersHeader'>BATTERS</div>");
   for (var i = 1; i < 10 ; i++) {
@@ -64,7 +64,7 @@ $.ajax({
 });
 
 console.log(teamjson);
-
+var simjson;
 function runSimulation() {
   // body...
   $.ajax({
@@ -75,9 +75,10 @@ function runSimulation() {
   .done(function(data) {
     console.log("success running sim");
     console.log(data);
+    simjson = data;
     $('#sim_results').empty();
-    var $team1 = $("<div>", {class: "teamName teamTwo"}).text(data[0].team_name);
-    var $team2 = $("<div>", {class: "teamName teamTwo"}).text(data[1].team_name);
+    var $team1 = $("<div>", {class: "teamName teamTwo"}).text(data[0].team_name + " Results :");
+    var $team2 = $("<div>", {class: "teamName teamTwo"}).text(data[1].team_name + " Results :");
     $('#sim_results').append($team1);
     $('#sim_results').append($team2);
     for (var i in data) {
@@ -90,6 +91,9 @@ function runSimulation() {
         $team1.append(statsString);
       }
     }
+
+
+
   })
   .fail(function() {
     console.log("error running sim");
@@ -99,3 +103,11 @@ function runSimulation() {
   });
 
 }
+
+// function declareWinner(simjson){
+//   team1total = 0;
+//   team2total = 0;
+//   if () {
+//
+//   }
+// }
