@@ -55,8 +55,6 @@ $.ajax({
   var $simbutton = $("<button>", {class: "simButton u-full-width button-primary", id: "simButton", onclick: "runSimulation();" }).text("> >  SIMULATE GAME  < <");
   $('.sim_button_container').append($simbutton);
   console.log("added simbutton");
-  
-
 })
 .fail(function() {
   console.log("error");
@@ -77,19 +75,20 @@ function runSimulation() {
   .done(function(data) {
     console.log("success running sim");
     console.log(data);
+    $('#sim_results').empty();
+    var $team1 = $("<div>", {class: "teamName teamTwo"}).text(data[0].team_name);
+    var $team2 = $("<div>", {class: "teamName teamTwo"}).text(data[1].team_name);
+    $('#sim_results').append($team1);
+    $('#sim_results').append($team2);
     for (var i in data) {
-      data[i].ab_total
-      data[i].ba_total
-      data[i].er_total
-      data[i].era_total
-      data[i].h_total
-      data[i].hr_total
-      data[i].ip_total
-      data[i].k_total
-      data[i].r_total
-      data[i].rbi_total
-      data[i].sb_total
-      data[i].sv_total
+      var statsString = " BA: " + data[i].ba_total + " ERA: " + data[i].era_total + " Hits:" + data[i].h_total + " HR: " + data[i].hr_total + " Ks: " + data[i].k_total + " Runs: " +
+      data[i].r_total + " RBIs: " +
+      data[i].rbi_total + " SBs: " + data[i].sb_total + " Saves: " + data[i].sv_total;
+      if (i == 1) {
+        $team2.append(statsString);
+      } else {
+        $team1.append(statsString);
+      }
     }
   })
   .fail(function() {
