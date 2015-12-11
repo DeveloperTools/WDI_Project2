@@ -43,11 +43,16 @@ class LeagueController < ApplicationController
 
   get '/myleagues/:league_name/results' do
     league_check
+    @teams = League.find(params[:league_name])
+    # if League.find(params[:league_name]).simulationcomplete = false
+    #   return
+    # end
+    return @teams.to_json
   end
 
   get '/myleagues/:league_name/simulation' do
     league_check
-    @teams = League.find(params[:league_name]).teams
+    @teams = League.find_by(league_name: params[:league_name]).teams
     @teams.each do |team|
       @stats = Hash.new
       @stats[:playerid] = team.player1_id
