@@ -13,7 +13,7 @@ $.ajax({
 
   var $team1 = $("<div>", {class: "teamName teamOne"}).text(current_account);
   $('#results_teamOne').append($team1);
-  $('#results_teamOne').append($battersHeader);
+  $('#results_teamOne').append("<div class='battersHeader'>BATTERS</div>");
   for (var i = 1; i < 10 ; i++) {
     var pid = "player" + i + "_id";
     var $player = $("<div>", {class: "playerContainer", id: "player" + i});
@@ -22,7 +22,7 @@ $.ajax({
     $player.append($name);
     $('#results_teamOne').append($player);
   }
-  $('#results_teamOne').append($pitchersHeader);
+  $('#results_teamOne').append("<div class='battersHeader'>PITCHERS</div>");
   for (var i = 10; i < 17 ; i++) {
     var pid = "player" + i + "_id";
     var $player = $("<div>", {class: "playerContainer", id: "player" + i});
@@ -34,7 +34,7 @@ $.ajax({
   //
   var $team2 = $("<div>", {class: "teamName teamTwo"}).text(opponent_account);
   $('#results_teamTwo').append($team2);
-  $('#results_teamTwo').append($battersHeader);
+  $('#results_teamTwo').append("<div class='battersHeader'>BATTERS</div>");
   for (var i = 1; i < 10 ; i++) {
     var pid = "player" + i + "_id";
     var $player = $("<div>", {class: "playerContainer", id: "player" + i});
@@ -43,7 +43,7 @@ $.ajax({
     $player.append($name);
     $('#results_teamTwo').append($player);
   }
-  $('#results_teamTwo').append($pitchersHeader);
+  $('#results_teamTwo').append("<div class='battersHeader'>PITCHERS</div>");
   for (var i = 10; i < 17 ; i++) {
     var pid = "player" + i + "_id";
     var $player = $("<div>", {class: "playerContainer", id: "player" + i});
