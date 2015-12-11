@@ -116,11 +116,17 @@ get '/search/:searchterm' do
   return @playersarray.to_json
 end
 
-post '/savedraft' do
+get '/savedraft' do
 
   record = League.find_by(league_name: session[:current_league])
-  team = session[:team_name]
-  record[team_name] = team
+  team = session[:current_team]
+  if record.team1_owner == session[:current_account]
+    record.team1_name = team
+  else
+    record.team2_name = team
+  end
+  record.save
+
   redirect "/league/myleagues/:" + session[:current_league]
 
 end
