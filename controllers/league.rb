@@ -43,7 +43,7 @@ class LeagueController < ApplicationController
 
   get '/myleagues/:league_name/results' do
     league_check
-    @teams = League.find(params[:league_name])
+    @teams = League.find(params[:league_name]).teams
     # if League.find(params[:league_name]).simulationcomplete = false
     #   return
     # end
@@ -86,27 +86,37 @@ class LeagueController < ApplicationController
     league_check
     @teams = League.find_by(league_name: params[:league_name]).teams
     @teams.each do |team|
-      @stats = Hash.new
-      @stats[:playerid] = team.player1_id
-      @stats[:yearid] = team.player1_yearid
-      batting = nil
-      Player.find(team.player1_id).batting_records.each do |bat|
-        if bat.yearid == @stats[:yearid].to_i
-          batting = bat
+      team.r_total = 0
+      team.h_total = 0
+      team.ab_total = 0
+      team.hr_total = 0
+      team.rbi_total = 0
+      team.sb_total = 0
+      9.times do |batter|
+        playerid = "player" + (batter + 1).to_s + "_id"
+        yearid = "player" + (batter + 1).to_s + "_yearid"
+        @stats = Hash.new
+        @stats[:playerid] = team[playerid.to_sym]
+        @stats[:yearid] = team[yearid.to_sym]
+        batting = nil
+        Player.find(team[playerid.to_sym]).batting_records.each do |bat|
+          if bat.yearid == @stats[:yearid].to_i
+            batting = bat
+          end
+          p bat
         end
-        p bat
+        results = simulate_batting(batting,atbats)
+        team.r_total += results[:r]
+        team.h_total += results[:h]
+        team.ab_total += results[:ab]
+        team.hr_total += results[:hr]
+        team.rbi_total += results[:rbi]
+        team.sb_total += results[:sb]
+        team.save
       end
-      results = simulate_batting(batting,atbats)
-      team.r_total = results[:r]
-      team.h_total = results[:h]
-      team.ab_total = results[:ab]
-      team.hr_total = results[:hr]
-      team.rbi_total = results[:rbi]
-      team.sb_total = results[:sb]
-      team.save
     end
     redirect '/league/myleagues/' + params[:league_name]
-  end
+    end
 
   def league_check
     @err_message = "That League does not exist"
@@ -164,6 +174,17 @@ class LeagueController < ApplicationController
     end
     return results
   end
+
+  def simulate_pitching(stats,abs)
+    results = Hash.new
+    results = {:w => 0,
+      :bb => 0,
+      :k => 0,
+      :ip => 0,
+      :er =>0,
+      :sv =>0}
+  end
+
 
   def atbats
     case rand.round(2)

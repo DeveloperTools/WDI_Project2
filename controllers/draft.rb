@@ -23,7 +23,7 @@ end
 
 post '/' do
   Draft.create(
-    :team_owner => session[:account_name],
+    :team_owner => session[:current_account],
     :team_name => params[:team_name],
     :league_name => session[:current_league]
   )
