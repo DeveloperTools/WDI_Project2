@@ -170,7 +170,8 @@ function displayDraftComplete (){
     $(".draft_button").css("display", "none");
     var $draft_complete = $("<button>", {class: "button-primary draft_complete"}).text("FINISH DRAFT");
     $draft_complete.click(function(){
-      redirectToLeagueDetail();
+      window.location = '/draft/savedraft';
+      // redirectToLeagueDetail();
     });
     $("#draftedPitchers").append($draft_complete);
   }

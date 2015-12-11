@@ -93,21 +93,23 @@ function playerSearch() {
     });
 };
 
+//
+// used for displayDraftComplete...not currently used
 function redirectToLeagueDetail() {
-  $.ajax({
-    url: '/draft/savedraft',
-    type: 'POST',
-    dataType: 'json',
-    })
-    //
-    .done(function(data) {
-    })
-    //
-    .fail(function() {
-      // console.log("error");
-    })
-    //
-    .always(function() {
-      // console.log("complete");
-    });
+  // $.ajax({
+  //   url: '/draft/savedraft',
+  //   type: 'GET',
+  //   dataType: 'json',
+  //   })
+  //   //
+  //   .done(function(data) {
+  //   })
+  //   //
+  //   .fail(function() {
+  //     // console.log("error");
+  //   })
+  //   //
+  //   .always(function() {
+  //     // console.log("complete");
+  //   });
 }
