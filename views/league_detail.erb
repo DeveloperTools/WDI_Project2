@@ -8,15 +8,25 @@
 </div>
 
 <div class="container">
+
+  <div class="row">
+    <div class="twelve columns">
+      <h2> <p><strong><%=session[:current_account]%></strong> you're up against <strong>SecondPlayer</strong> in the <%=session[:league_name]%> league.</p></h2>
+      <h3><p><strong>After both teams have been drafted simulate a season to see who makes history!</strong></p></h3>
+    </div>
+  </div>
+
   <div class="row">
     <div class="six columns">
-      <p>
-        <h1>Details for League: <b><%=session[:league_name]%></b></h1>
-      </p>
-      <div id="results">
+      <div id="results_team1" class="results_list">
+      </div>
+    </div>
+    <div class="six columns">
+      <div id="results_team2" class="results_list">
       </div>
     </div>
   </div>
+
 </div>
 
 

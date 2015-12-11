@@ -7,7 +7,7 @@ $.ajax({
   console.log("success");
   teamjson = data;
   console.log(data);
-  var $team1 = $("<div>", {class: "teamName"}).text("Team 1 owned by:");
+  var $team1 = $("<div>", {class: "teamName teamOne"});
   $('#results_team1').append($team1);
 
   $('#results_team1').append('Batters');
@@ -17,7 +17,7 @@ $.ajax({
     var $name = $("<div>", {class: "playerName"});
     $name.text("Batter " + i + ": " + teamjson.team1[i-1]);
     $player.append($name);
-    $('#results').append($player);
+    $('#results_team1').append($player);
   }
   $('#results_team1').append('PITCHERS');
   for (var i = 10; i < 17 ; i++) {
@@ -29,7 +29,7 @@ $.ajax({
     $('#results_team1').append($player);
   }
 
-  var $team2 = $("<div>", {class: "teamName"}).text("Team 2 owned by:");
+  var $team2 = $("<div>", {class: "teamName teamTwo"});
   $('#results_team2').append($team2);
 
   $('#results_team2').append('Batters');
