@@ -6,6 +6,7 @@ function resetDraftPlayerList() {
 
 function updateDraftPlayerList(playerList){
   //
+  playerListObject = playerList;
   var $draftList = $("#draftList");
   console.table(playerList);
   //
@@ -17,78 +18,90 @@ function updateDraftPlayerList(playerList){
     var $pitchingheaderContainer = $("<div>", {class: "headerContainer"})
     //
     // APPEND NAME to PLAYER
-    $name.text(playerList[player].namefirst + " " + playerList[player].namelast);
-    $player.append($name);
+
     //
     // STATS HEADER
-    var battingColHeaders = ["YEAR","HITS","RUNS","H.RUNS","RBI","S.BASES", "DRAFT"];
-    for (var i = 0; i < 7; i++){
-      $div = $("<div>", {class: "headerName"});
-      $div.text(battingColHeaders[i]);
-      $headerContainer.append($div);
+    if (playerList[player].batting.length != 0) {
+      $name.text(playerList[player].namefirst + " " + playerList[player].namelast);
+      $player.append($name);
+      var battingColHeaders = ["YEAR","HITS","RUNS","H.RUNS","RBI","S.BASES", ""];
+      for (var i = 0; i < 7; i++){
+        $div = $("<div>", {class: "headerName"});
+        $div.text(battingColHeaders[i]);
+        $headerContainer.append($div);
+        $headerContainer.addClass("battingHeader");
+      }
+      $player.append($headerContainer);
+      // STATS
+      //
+
+      for (var year in playerList[player].batting) {
+        var yearNum = playerList[player].batting[year].yearid;
+        var hits = playerList[player].batting[year].h;
+        var runs = playerList[player].batting[year].r;
+        var h_runs = playerList[player].batting[year].hr;
+        var rbis = playerList[player].batting[year].rbi;
+        var s_bases = playerList[player].batting[year].sb;
+
+        var $statsContainer = $("<div>", {class: "statsContainer"})
+        var $year = $("<div>", {class: "year stats"}).text(yearNum);
+        var $hits = $("<div>", {class: "hits stats"}).text(hits);
+        var $runs = $("<div>", {class: "runs stats"}).text(runs);
+        var $h_runs = $("<div>", {class: "h_runs stats"}).text(h_runs);
+        var $rbis = $("<div>", {class: "rbis stats"}).text(rbis);
+        var $s_bases = $("<div>", {class: "s_bases stats"}).text(s_bases);
+        var $draft_button = $("<button>", {class: "button-primary draft_button", onclick: "draftPlayer(\"" + playerList[player].playerid + "\"," + yearNum + ")"}).text("draft");
+
+        $statsContainer.append($year);
+        $statsContainer.append($hits);
+        $statsContainer.append($runs);
+        $statsContainer.append($h_runs);
+        $statsContainer.append($rbis);
+        $statsContainer.append($s_bases);
+        $statsContainer.append($draft_button);
+        $player.append($statsContainer);
+      }
     }
-    $player.append($headerContainer);
-    // STATS
-    //
-    for (var year in playerList[player].batting) {
-      var yearNum = playerList[player].batting[year].yearid;
-      var hits = playerList[player].batting[year].h;
-      var runs = playerList[player].batting[year].r;
-      var h_runs = playerList[player].batting[year].hr;
-      var rbis = playerList[player].batting[year].rbi;
-      var s_bases = playerList[player].batting[year].sb;
+  //
+    if (playerList[player].pitching.length != 0) {
+      $name.text(playerList[player].namefirst + " " + playerList[player].namelast + " (Pitcher)");
+      $player.append($name);
+      var pitchingColHeaders = ["YEAR","WINS","WALKS","K","ERA","SAVES", ""];
+      for (var i = 0; i < 7; i++){
+        $div = $("<div>", {class: "headerName"});
+        $div.text(pitchingColHeaders[i]);
+        $pitchingheaderContainer.append($div);
+        $pitchingheaderContainer.addClass("pitchingHeader");
 
-      var $statsContainer = $("<div>", {class: "statsContainer"})
-      var $year = $("<div>", {class: "year stats"}).text(yearNum);
-      var $hits = $("<div>", {class: "hits stats"}).text(hits);
-      var $runs = $("<div>", {class: "runs stats"}).text(runs);
-      var $h_runs = $("<div>", {class: "h_runs stats"}).text(h_runs);
-      var $rbis = $("<div>", {class: "rbis stats"}).text(rbis);
-      var $s_bases = $("<div>", {class: "s_bases stats"}).text(s_bases);
-      var $draft_button = $("<button>", {class: "button-primary draft_button stats", onclick: "draftPlayer(\"" + playerList[player].playerid + "\"," + yearNum + ")"}).text("draft");
+      }
+      $player.append($pitchingheaderContainer);
 
-      $statsContainer.append($year);
-      $statsContainer.append($hits);
-      $statsContainer.append($runs);
-      $statsContainer.append($h_runs);
-      $statsContainer.append($rbis);
-      $statsContainer.append($s_bases);
-      $statsContainer.append($draft_button);
-      $player.append($statsContainer);
-    }
-    var pitchingColHeaders = ["YEAR","WINS","WALKS","K","ERA","SAVES", "DRAFT"];
-    for (var i = 0; i < 7; i++){
-      $div = $("<div>", {class: "headerName"});
-      $div.text(pitchingColHeaders[i]);
-      $pitchingheaderContainer.append($div);
-    }
-    $player.append($pitchingheaderContainer);
+      for (var year in playerList[player].pitching) {
+        var yearNum = playerList[player].pitching[year].yearid;
+        var wins = playerList[player].pitching[year].w;
+        var bb = playerList[player].pitching[year].bb;
+        var k = playerList[player].pitching[year].so;
+        var era = playerList[player].pitching[year].era;
+        var sv = playerList[player].pitching[year].sv;
 
-    for (var year in playerList[player].pitching) {
-      var yearNum = playerList[player].pitching[year].yearid;
-      var wins = playerList[player].pitching[year].w;
-      var bb = playerList[player].pitching[year].bb;
-      var k = playerList[player].pitching[year].so;
-      var era = playerList[player].pitching[year].era;
-      var sv = playerList[player].pitching[year].sv;
+        var $statsContainer = $("<div>", {class: "statsContainer"})
+        var $year = $("<div>", {class: "year stats"}).text(yearNum);
+        var $wins = $("<div>", {class: "wins stats"}).text(wins);
+        var $bb = $("<div>", {class: "bb stats"}).text(bb);
+        var $k = $("<div>", {class: "k stats"}).text(k);
+        var $era = $("<div>", {class: "era stats"}).text(era);
+        var $sv = $("<div>", {class: "sv stats"}).text(sv);
+        var $draft_button = $("<button>", {class: "button-primary draft_button", onclick: "draftPitcher(\"" + playerList[player].playerid + "\"," + yearNum + ")"}).text("draft");
 
-      var $statsContainer = $("<div>", {class: "statsContainer"})
-      var $year = $("<div>", {class: "year stats"}).text(yearNum);
-      var $wins = $("<div>", {class: "wins stats"}).text(wins);
-      var $bb = $("<div>", {class: "bb stats"}).text(bb);
-      var $k = $("<div>", {class: "k stats"}).text(k);
-      var $era = $("<div>", {class: "era stats"}).text(era);
-      var $sv = $("<div>", {class: "sv stats"}).text(sv);
-      var $draft_button = $("<button>", {class: "button-primary draft_button stats", onclick: "draftPitcher(\"" + playerList[player].playerid + "\"," + yearNum + ")"}).text("draft");
-
-      $statsContainer.append($year);
-      $statsContainer.append($wins);
-      $statsContainer.append($bb);
-      $statsContainer.append($k);
-      $statsContainer.append($era);
-      $statsContainer.append($sv);
-      $statsContainer.append($draft_button);
-      $player.append($statsContainer);
+        $statsContainer.append($year);
+        $statsContainer.append($wins);
+        $statsContainer.append($bb);
+        $statsContainer.append($k);
+        $statsContainer.append($era);
+        $statsContainer.append($sv);
+        $statsContainer.append($draft_button);
+        $player.append($statsContainer);
+      }
     }
     //
     // ADD TO PAGE with CLICK FUNCTION to COLLAPSE HISTORY
