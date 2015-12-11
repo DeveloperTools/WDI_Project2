@@ -17,7 +17,7 @@ $.ajax({
     var $name = $("<div>", {class: "playerName"});
     $name.text("Batter " + i + ": " + teamjson.team1[i-1]);
     $player.append($name);
-    $('#results').append($player);
+    $('#results_team1').append($player);
   }
   $('#results_team1').append('PITCHERS');
   for (var i = 10; i < 17 ; i++) {
