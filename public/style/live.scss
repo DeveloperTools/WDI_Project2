@@ -1,6 +1,7 @@
 body {
   background-image: url("/img/bkgd_baseballRightTop.jpg");
   background-size: cover;
+  font-size: 1.2rem;
 }
 
 input:-webkit-autofill {
@@ -37,8 +38,18 @@ input:-webkit-autofill {
   display: block;
 }
 
-searchbox {
-  
+#searchbox {
+    width: 80%;
+    min-width: 50%;
+}
+
+.pitchingHeader{
+  background-color: rgba(255, 0, 0, 0.5);
+
+}
+
+.battingHeader{
+  background-color: rgba(58, 91, 208, .5);
 }
 
 .draftHeader {
@@ -46,7 +57,8 @@ searchbox {
 }
 
 .draft_button{
-  vertical-align: baseline;
+  height:100%;
+  border-radius: 0px;
 }
 
 .draftPlayer {
@@ -68,7 +80,7 @@ searchbox {
 .headerContainer {
   width: 100%;
   display: block;
-  background-color: rgba(58, 91, 208, .5);
+  // background-color: rgba(58, 91, 208, .5);
   color: white;
 
 }
@@ -84,7 +96,7 @@ searchbox {
   width: 100%;
   display: block;
   background-color: rgba(255, 255, 255, 0.5);
-  height: 24px;
+  height: 32px;
   margin-top: 1px;
 }
 
