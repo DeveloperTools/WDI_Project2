@@ -10,13 +10,37 @@
 <div class="container">
   <div class="row">
     <div class="six columns">
-
+<input
       <p>
         League Page
       </p>
       <div id="results">
-          RESULTS
       </div>
     </div>
   </div>
 </div>
+
+
+<script>
+
+var url = '/league/myleagues/<%=session[:league_name]%>/results';
+console.log(url);
+
+$.ajax({
+  url: url,
+  type: 'GET',
+  dataType: 'json'
+})
+.done(function(data) {
+  console.log("success");
+  console.log(data);
+})
+.fail(function() {
+  console.log("error");
+})
+.always(function() {
+  console.log("complete");
+});
+
+
+</script>
