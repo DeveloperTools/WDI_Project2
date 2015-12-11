@@ -10,19 +10,22 @@
 <div class="container">
 
   <div class="row">
-    <div class="twelve columns">
-      <h2> <p><strong><%=session[:current_account]%></strong> you're up against <strong>SecondPlayer</strong> in the <%=session[:league_name]%> league.</p></h2>
-      <h3><p><strong>After both teams have been drafted simulate a season to see who makes history!</strong></p></h3>
+    <div class="ten columns">
+      <h3> <p><strong><%=session[:current_account]%></strong> you're up against <strong>SecondPlayer</strong><br> in the <strong><%=session[:league_name]%></strong> league.</p></h3>
     </div>
   </div>
-
+  <div class="row">
+  <div class="twelve columns">
+    <h5><p><strong>After both teams have been drafted simulate a season and see who makes history!</strong></p></h5>
+  </div>
+  </div>
   <div class="row">
     <div class="six columns">
-      <div id="results_team1" class="results_list">
+      <div id="results_teamOne" class="results_list">
       </div>
     </div>
     <div class="six columns">
-      <div id="results_team2" class="results_list">
+      <div id="results_teamTwo" class="results_list">
       </div>
     </div>
   </div>
@@ -42,7 +45,8 @@
 
 
 <script>
-
+var current_account = '<%=session[:current_account]%>';
+var opponent_account = "Opponent Account Name";
 var url = '/league/myleagues/<%=session[:league_name]%>/teams';
 var simUrl = '/league/myleagues/<%=session[:league_name]%>/simulation';
 console.log(url);
