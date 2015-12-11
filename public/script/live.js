@@ -8,7 +8,6 @@ function updateDraftPlayerList(playerList){
   //
   playerListObject = playerList;
   var $draftList = $("#draftList");
-  console.table(playerList);
   //
   for (var player in playerList) {
     // construct divs for players in list
@@ -18,12 +17,16 @@ function updateDraftPlayerList(playerList){
     var $pitchingheaderContainer = $("<div>", {class: "headerContainer"})
     //
     // APPEND NAME to PLAYER
-
+    if (playerList[player].pitching.length != 0) {
+      $name.text(playerList[player].namefirst + " " + playerList[player].namelast + " (Pitcher)");
+    } else {
+      $name.text(playerList[player].namefirst + " " + playerList[player].namelast);
+    }
+    $player.append($name);
     //
     // STATS HEADER
     if (playerList[player].batting.length != 0) {
-      $name.text(playerList[player].namefirst + " " + playerList[player].namelast);
-      $player.append($name);
+
       var battingColHeaders = ["YEAR","HITS","RUNS","H.RUNS","RBI","S.BASES", ""];
       for (var i = 0; i < 7; i++){
         $div = $("<div>", {class: "headerName"});
@@ -64,8 +67,6 @@ function updateDraftPlayerList(playerList){
     }
   //
     if (playerList[player].pitching.length != 0) {
-      $name.text(playerList[player].namefirst + " " + playerList[player].namelast + " (Pitcher)");
-      $player.append($name);
       var pitchingColHeaders = ["YEAR","WINS","WALKS","K","ERA","SAVES", ""];
       for (var i = 0; i < 7; i++){
         $div = $("<div>", {class: "headerName"});
@@ -110,6 +111,44 @@ function updateDraftPlayerList(playerList){
     //
     // ADD EVENT TO COLLAPSE ON CLICK
     createClickEvent_collapse($player, $name);
+  }
+}
+
+function updateDraftedBatterList(draftedList) {
+  $("#draftedBatters").empty();
+  $header = $("<div>", {class: "drafted_list_header"});
+  $header.text("DRAFTED BATTERS");
+  $("#draftedBatters").append($header);
+  for (var i = 0; i < 100; i++) {
+    if (draftedList["player" + i + "_id"] != undefined) {
+      $playerContainer = $("<div>", {class: "drafted_player"});
+      $player = $("<div>", {class: "drafted_player_name drafted_list"});
+      $year = $("<div>", {class: "drafted_player_year drafted_list"});
+      $player.text(draftedList["player" + i + "_id"]);
+      $year.text(draftedList["player" + i + "_yearid"]);
+      $playerContainer.append($player);
+      $playerContainer.append($year);
+      $("#draftedBatters").append($playerContainer);
+    }
+  }
+}
+
+function updateDraftedPitcherList(draftedList) {
+  $("#draftedPitchers").empty();
+  $header = $("<div>", {class: "drafted_list_header"});
+  $header.text("DRAFTED PITCHERS");
+  $("#draftedPitchers").append($header);
+  for (var i = 0; i < 100; i++) {
+    if (draftedList["pitcher" + i + "_id"] != undefined) {
+      $playerContainer = $("<div>", {class: "drafted_player"});
+      $player = $("<div>", {class: "drafted_player_name drafted_list"});
+      $year = $("<div>", {class: "drafted_player_year drafted_list"});
+      $player.text(draftedList["pitcher" + i + "_id"]);
+      $year.text(draftedList["pitcher" + i + "_yearid"]);
+      $playerContainer.append($player);
+      $playerContainer.append($year);
+      $("#draftedPitchers").append($playerContainer);
+    }
   }
 }
 

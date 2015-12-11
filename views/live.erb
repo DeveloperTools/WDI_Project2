@@ -10,15 +10,15 @@
 
 <div class="container">
   <div class="row">
-    <div class="ten columns">
+    <div class="nine columns">
     <!-- LEFT COL -->
       <div class="draftHeader"><h3>
           <h3>Draft for <strong><%= session[:current_team] %></strong> in league <strong><%= session[:league_name] %></strong></p></h3>
       </div>
 
       <form class="draftSearch" action="#">
-        <input type="text" id="searchbox" name="" placeholder="Player Name">
-        <input type="button" value="Find Player" onclick="playerSearch()">
+        <input type="text" id="search_box" name="" placeholder="Player Name">
+        <input type="button" id="search_button"value="Find Player" onclick="playerSearch()">
         <!--add hidden text box to prevent users from submitting form by pressing enter key-->
         <input type="text" style="display: none;">
       </form>
@@ -29,10 +29,19 @@
     <!-- END LEFT COL -->
     </div>
 
-    <div class="two columns">
+    <div class="three columns">
     <!-- RIGHT COL -->
-
-      <div id="draftSearchResults">
+      <div class="drafted_players_container">
+        <div id="draftedBatters" class="draftedList">
+          <div class="drafted_list_header">
+            DRAFTED BATTERS
+          </div>
+        </div>
+        <div id="draftedPitchers" class="draftedList">
+          <div class="drafted_list_header">
+            DRAFTED PITCHERS
+          </div>
+        </div>
       </div>
     <!-- END RIGHT COL -->
     </div>

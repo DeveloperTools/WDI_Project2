@@ -32,9 +32,27 @@ input:-webkit-autofill {
   background-color: rgba(119, 255, 77, 0.31);
   display: block; }
 
-#searchbox {
-  width: 80%;
-  min-width: 50%; }
+#search_box {
+  width: 70%; }
+
+#draftedBatters {
+  position: absolute;
+  top: 164px; }
+
+#draftedPitchers {
+  position: absolute;
+  top: 380px; }
+
+.drafted_list {
+  display: inline;
+  margin-left: 5px; }
+
+.drafted_player {
+  display: block; }
+
+.drafted_list_header {
+  font-size: 1.5rem;
+  font-weight: bold; }
 
 .pitchingHeader {
   background-color: rgba(255, 0, 0, 0.5); }

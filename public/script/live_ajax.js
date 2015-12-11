@@ -35,7 +35,9 @@ function draftPlayer(name,year) {
     data: playerSelected
   })
   .done(function (data) {
-    // console.log(data);
+    updateDraftedBatterList(data);
+    // console.table(data);
+    console.log(data);
     // console.log(JSON.stringify(data));
   })
   .fail(function (data) {
@@ -57,7 +59,8 @@ function draftPitcher(name,year) {
     data: playerSelected
   })
   .done(function (data) {
-    // console.log(data);
+    updateDraftedPitcherList(data);
+    console.log(data);
     // console.log(JSON.stringify(data));
   })
   .fail(function (data) {
