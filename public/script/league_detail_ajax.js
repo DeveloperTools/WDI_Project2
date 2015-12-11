@@ -11,7 +11,7 @@ $.ajax({
   var $battersHeader = $("<div>", {class: "battersHeader"}).text("BATTERS");
   var $pitchersHeader = $("<div>", {class: "pitchersHeader"}).text("PITCHERS");
 
-  var $team1 = $("<div>", {class: "teamName teamOne"}).text(current_account);
+  var $team1 = $("<div>", {class: "teamName teamOne"}).text(teamjson.team1[16]);
   $('#results_teamOne').append($team1);
   $('#results_teamOne').append("<div class='battersHeader'>BATTERS</div>");
   for (var i = 1; i < 10 ; i++) {
@@ -32,7 +32,7 @@ $.ajax({
     $('#results_teamOne').append($player);
   }
   //
-  var $team2 = $("<div>", {class: "teamName teamTwo"}).text(opponent_account);
+  var $team2 = $("<div>", {class: "teamName teamTwo"}).text(teamjson.team2[16]);
   $('#results_teamTwo').append($team2);
   $('#results_teamTwo').append("<div class='battersHeader'>BATTERS</div>");
   for (var i = 1; i < 10 ; i++) {
@@ -55,8 +55,6 @@ $.ajax({
   var $simbutton = $("<button>", {class: "simButton u-full-width button-primary", id: "simButton", onclick: "runSimulation();" }).text("> >  SIMULATE GAME  < <");
   $('.sim_button_container').append($simbutton);
   console.log("added simbutton");
-  
-
 })
 .fail(function() {
   console.log("error");
@@ -66,7 +64,7 @@ $.ajax({
 });
 
 console.log(teamjson);
-
+var simjson;
 function runSimulation() {
   // body...
   $.ajax({
@@ -77,20 +75,25 @@ function runSimulation() {
   .done(function(data) {
     console.log("success running sim");
     console.log(data);
+    simjson = data;
+    $('#sim_results').empty();
+    var $team1 = $("<div>", {class: "teamName teamTwo"}).text(data[0].team_name + " Results :");
+    var $team2 = $("<div>", {class: "teamName teamTwo"}).text(data[1].team_name + " Results :");
+    $('#sim_results').append($team1);
+    $('#sim_results').append($team2);
     for (var i in data) {
-      data[i].ab_total
-      data[i].ba_total
-      data[i].er_total
-      data[i].era_total
-      data[i].h_total
-      data[i].hr_total
-      data[i].ip_total
-      data[i].k_total
-      data[i].r_total
-      data[i].rbi_total
-      data[i].sb_total
-      data[i].sv_total
+      var statsString = " BA: " + data[i].ba_total + " ERA: " + data[i].era_total + " Hits:" + data[i].h_total + " HR: " + data[i].hr_total + " Ks: " + data[i].k_total + " Runs: " +
+      data[i].r_total + " RBIs: " +
+      data[i].rbi_total + " SBs: " + data[i].sb_total + " Saves: " + data[i].sv_total;
+      if (i == 1) {
+        $team2.append(statsString);
+      } else {
+        $team1.append(statsString);
+      }
     }
+
+
+
   })
   .fail(function() {
     console.log("error running sim");
@@ -100,3 +103,11 @@ function runSimulation() {
   });
 
 }
+
+// function declareWinner(simjson){
+//   team1total = 0;
+//   team2total = 0;
+//   if () {
+//
+//   }
+// }
