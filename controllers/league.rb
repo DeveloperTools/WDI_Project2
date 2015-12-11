@@ -114,6 +114,28 @@ class LeagueController < ApplicationController
         team.sb_total += results[:sb]
         team.save
       end
+      7.times do |pitcher|
+        pitcherid = "pitcher" + (pitcher + 1).to_s + "_id"
+        yearid = "pitcher" + (pitcher + 1).to_s + "_yearid"
+        @stats = Hash.new
+        @stats[:pitcherid] = team[pitcherid.to_sym]
+        @stats[:yearid] = team[yearid.to_sym]
+        pitching = nil
+        Player.find(team[pitcherid.to_sym]).pitching_records.each do |pitch|
+          if pitch.yearid == @stats[:yearid].to_i
+            pitching = pitch
+          end
+          p pitch
+        end
+        pitchresults = simulate_pitching(pitching,innings)
+        team.er_total += pitchresults[:er]
+        team.ip_total += pitchresults[:ip]
+        team.k_total += pitchresults[:k]
+        team.sv_total += pitchresults[:sv]
+        team.save
+      end
+      team.era_total = (team.er_total.to_f * 9.to_f / team.ip_total.to_f).round(2)
+      team.ba_total = (team.h_total.to_f / team.ab_total.to_f).round(3)
     end
     redirect '/league/myleagues/' + params[:league_name]
     end
@@ -138,7 +160,7 @@ class LeagueController < ApplicationController
       :rbi => 0,
       :ab => 0,
       :h =>0,
-      :sb =>0 }
+      :sb =>0}
     abs.times do
       if stats.ab > 0
         ba = (stats.h.to_f/stats.ab.to_f)
@@ -175,16 +197,49 @@ class LeagueController < ApplicationController
     return results
   end
 
-  def simulate_pitching(stats,abs)
+  def simulate_pitching(stats,inpitched)
     results = Hash.new
     results = {:w => 0,
-      :bb => 0,
       :k => 0,
       :ip => 0,
-      :er =>0,
-      :sv =>0}
+      :er => 0,
+      :sv => 0}
+    iptotal = stats.ipouts/3
+    w_ratio = stats.w.to_f/stats.g.to_f
+    k_ratio = stats.so.to_f/iptotal.to_f
+    er_ratio = stats.er.to_f/iptotal.to_f
+    sv_ratio = stats.sv.to_f/stats.g.to_f
+    if rand < w_ratio
+      results[:w] += 1
+    else
+      if stats.sv > 2
+        if rand < sv_ratio
+          results[:sv] += 1
+        end
+      end
+    end
+    results[:ip] += inpitched
+    results[:k] = (k_ratio*inpitched).to_i
+    results[:er] = (er_ratio*inpitched).to_i
+    return results
   end
 
+  def innings
+    case rand.round(2)
+    when 0 .. 0.04
+      4
+    when 0.05 .. 0.45
+      5
+    when 0.46 .. 0.79
+      6
+    when 0.80 .. 0.89
+      7
+    when 0.90 .. 0.96
+      8
+    else
+      9
+    end
+  end
 
   def atbats
     case rand.round(2)
