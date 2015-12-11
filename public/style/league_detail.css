@@ -24,7 +24,17 @@ input:-webkit-autofill {
 
 .teamName {
   font-weight: bold;
-  font-size: 2rem; }
+  font-size: 2rem;
+  color: white;
+  background-color: rgba(255, 0, 0, 0.5); }
+
+.battersHeader {
+  font-size: 3rem;
+  background-color: rgba(143, 143, 143, 0.6); }
+
+.pitchersHeader {
+  font-size: 3rem;
+  background-color: rgba(143, 143, 143, 0.6); }
 
 #container_logo img {
   position: relative;

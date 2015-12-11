@@ -17,16 +17,16 @@ $.ajax({
   for (var i = 1; i < 10 ; i++) {
     var pid = "player" + i + "_id";
     var $player = $("<div>", {class: "playerContainer", id: "player" + i});
-    var $name = $("<div>", {class: "playerName"});
+    var $name = $("<div>", {class: "playerName batter"});
     $name.text("Batter " + i + ": " + teamjson.team1[i-1]);
     $player.append($name);
     $('#results_teamOne').append($player);
   }
-  $('#results_teamOne').append("<div class='battersHeader'>PITCHERS</div>");
+  $('#results_teamOne').append("<div class='pitchersHeader'>PITCHERS</div>");
   for (var i = 10; i < 17 ; i++) {
     var pid = "player" + i + "_id";
     var $player = $("<div>", {class: "playerContainer", id: "player" + i});
-    var $name = $("<div>", {class: "playerName"});
+    var $name = $("<div>", {class: "playerName pitcher"});
     $name.text("Pitcher " + (i-9) + ": " + teamjson.team1[i-1]);
     $player.append($name);
     $('#results_teamOne').append($player);
@@ -38,16 +38,16 @@ $.ajax({
   for (var i = 1; i < 10 ; i++) {
     var pid = "player" + i + "_id";
     var $player = $("<div>", {class: "playerContainer", id: "player" + i});
-    var $name = $("<div>", {class: "playerName"});
+    var $name = $("<div>", {class: "playerName batter"});
     $name.text("Batter " + i + ": " + teamjson.team2[i-1]);
     $player.append($name);
     $('#results_teamTwo').append($player);
   }
-  $('#results_teamTwo').append("<div class='battersHeader'>PITCHERS</div>");
+  $('#results_teamTwo').append("<div class='pitchersHeader'>PITCHERS</div>");
   for (var i = 10; i < 17 ; i++) {
     var pid = "player" + i + "_id";
     var $player = $("<div>", {class: "playerContainer", id: "player" + i});
-    var $name = $("<div>", {class: "playerName"});
+    var $name = $("<div>", {class: "playerName pitcher"});
     $name.text("Pitcher " + (i-9) + ": " + teamjson.team2[i-1]);
     $player.append($name);
     $('#results_teamTwo').append($player);
